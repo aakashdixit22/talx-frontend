@@ -13,7 +13,16 @@ const PostJob = () => {
   } = useForm();
   const onSubmit = (data) => {
     data.skills = selectedOption;
-    console.log(data);
+   // console.log(data);
+   fetch("http://localhost:5000/post-job",{
+    method:"POST",
+    headers: {
+      "content-Type": "application/json"},
+      body: JSON.stringify(data),
+
+   }).then((res) => res.json()).then((result) =>{
+    console.log(result);
+    }); //fetched it from frontend to backend by applying url of app.get(/jobs)
   };
   const options = [
     {value: 'JavaScript', label: 'JavaScript'},
