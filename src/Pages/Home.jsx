@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Banner from '../components/Banner';
 import Card from '../components/Card';
 import Jobs from './Jobs';
@@ -7,19 +8,25 @@ import NewsLetter from '../components/NewsLetter';
 
 const Home = () => {
   const [selectedCateogry, setSelectedCateogry] = useState(null);
-  const [jobs, setJobs] = useState([]); // Initially empty array, will be populated from jobs.json for the filter section
+  const [jobs, setJobs] = useState([]); // Initially empty array, will be populated from the server
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
   useEffect(() => {
-    setIsLoading(true);
-    fetch("jobs.json")
-      .then((response) => response.json())
-      .then((data) => {
-        setJobs(data);
-        setIsLoading(false); // Loading is false when data is fetched
-      });
+    const fetchJobs = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get('http://localhost:5000/all-jobs');
+        setJobs(response.data);
+      } catch (error) {
+        console.error('Error fetching jobs:', error);
+      } finally {
+        setIsLoading(false); // Loading is false after request (whether success or error)
+      }
+    };
+
+    fetchJobs();
   }, []);
 
   const [query, setQuery] = useState('');
@@ -28,7 +35,7 @@ const Home = () => {
   };
 
   // Filter jobs by title
-  const filterJobs = jobs.filter((job) => job.jobTitle.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+  const filterJobs = jobs.filter((job) => job.jobTitle.toLowerCase().includes(query.toLowerCase()));
 
   // Radio filtering
   const handleChange = (event) => {
@@ -70,14 +77,13 @@ const Home = () => {
 
     // Category filtering
     if (selected) {
-      filteredJobs = filteredJobs.filter(({ jobLocation, maxPrice, experienceLevel, postingDate,salaryType, employmentType }) => (
+      filteredJobs = filteredJobs.filter(({ jobLocation, maxPrice, experienceLevel, postingDate, salaryType, employmentType }) => (
         jobLocation.toLowerCase() === selected.toLowerCase() ||
         parseInt(maxPrice) === parseInt(selected) ||
-        postingDate>=selected ||
+        postingDate >= selected ||
         experienceLevel.toLowerCase() === selected.toLowerCase() ||
         salaryType.toLowerCase() === selected.toLowerCase() ||
         employmentType.toLowerCase() === selected.toLowerCase()
-        
       ));
     }
 
@@ -112,21 +118,20 @@ const Home = () => {
               <p>No Jobs Found</p>
             </>
           )}
-        
 
-        {/* Pagination section */}
-        {result.length > 0 && (
-          <div className='flex justify-center mt-4 space-x-8'>
-            <button onClick={prevPage} disabled={currentPage===1} className='hover:underline'>Previous</button>{/* it will disable when the currentpage is 1 */}
-            <span className='mx-2'>Page {currentPage} of {Math.ceil(filterJobs.length / itemsPerPage)}</span>
-            <button onClick={nextPage} disabled={currentPage===Math.ceil(filterJobs.length/itemsPerPage)} className='underline'>Next</button>
-          </div>
-        )}
+          {/* Pagination section */}
+          {result.length > 0 && (
+            <div className='flex justify-center mt-4 space-x-8'>
+              <button onClick={prevPage} disabled={currentPage === 1} className='hover:underline'>Previous</button>
+              <span className='mx-2'>Page {currentPage} of {Math.ceil(filterJobs.length / itemsPerPage)}</span>
+              <button onClick={nextPage} disabled={currentPage === Math.ceil(filterJobs.length / itemsPerPage)} className='underline'>Next</button>
+            </div>
+          )}
         </div>
 
         {/* Rightside section */}
         <div className='bg-white p-4 rounded'>
-          <NewsLetter/>
+          <NewsLetter />
         </div>
       </div>
     </div>
