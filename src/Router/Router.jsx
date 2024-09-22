@@ -4,7 +4,9 @@ import Home from "../Pages/Home";
 import About from "../Pages/About";
 import PostJob from "../Pages/PostJob";
 import Myjob from "../Pages/Myjob";
-
+import News from "../Pages/News";
+import Login from "../Pages/Login";
+import Signup from "../Pages/Signup";
 const router = createBrowserRouter([
     {
       path: "/",
@@ -20,6 +22,18 @@ const router = createBrowserRouter([
           path:"/my-job",
           element:<Myjob/>
         },
+        {
+          path:"/news",
+          element:<News/>
+        },
+        { 
+          path:"/login",
+          element:<Login/>
+        },
+        {
+          path:"/signup",
+          element:<Signup/>
+        }
         
       ]
     },
