@@ -5,13 +5,14 @@ import EditJobModal from "../components/EditJobModal"; // Import EditJobModal co
 import { Toaster } from "react-hot-toast";
 
 const Myjob = () => {
-  const email = "nofiyi3358@nastyx.com";
+  const email = localStorage.getItem("email");
   const [jobs, setJobs] = useState([]);
   const [originalJobs, setOriginalJobs] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [editingJob, setEditingJob] = useState(null);
+  const token = localStorage.getItem("token");
 
   const [currentPage, setCurrentPage] = useState(1); // Track current page
   const jobsPerPage = 5; // Number of jobs per page
@@ -21,7 +22,11 @@ const Myjob = () => {
   const fetchJobs = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:5000/myJobs/${email}`);
+      const response = await axios.get(`http://localhost:5000/api/jobs/myJobs/${email}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setJobs(response.data);
       setOriginalJobs(response.data);
     } catch (error) {
@@ -55,7 +60,11 @@ const Myjob = () => {
 
   const handleDelete = async (jobId) => {
     try {
-      await axios.delete(`http://localhost:5000/delete-job/${jobId}`);
+      await axios.delete(`http://localhost:5000/api/jobs/delete-job/${jobId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       const updatedJobs = jobs.filter((job) => job._id !== jobId);
       setJobs(updatedJobs);
     } catch (error) {
@@ -215,10 +224,11 @@ const Myjob = () => {
 
         {showModal && (
           <EditJobModal
-            job={editingJob}
-            onClose={() => setShowModal(false)}
-            onSave={fetchJobs}
-          />
+  job={editingJob}
+  onClose={() => setShowModal(false)}
+  onSave={fetchJobs}
+/>
+
         )}
       </div>
     </>

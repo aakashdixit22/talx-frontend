@@ -6,6 +6,7 @@ import { Toaster, toast } from "react-hot-toast"; // Import toaster and toast
 
 const PostJob = () => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const email = localStorage.getItem("email");
   const {
     register,
     handleSubmit,
@@ -21,13 +22,16 @@ const PostJob = () => {
     }
 
     data.skills = selectedOption.map(option => option.value); // Store only the skill values
+    data.postedBy = email;
     try {
-      const response = await axios.post("http://localhost:5000/post-job", data, {
+      const response = await axios.post("http://localhost:5000/api/jobs/post-job", data, {
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      if (response.data.acknowledged) {
+      console.log("Response: ", response);
+      if (response.data) {
         console.log("Job Posted Successfully: ", response.data)
         toast.success("Job posted successfully!");
         reset(); // Reset the form after successful submission
@@ -261,7 +265,7 @@ const PostJob = () => {
           </div>
 
           {/* Posted by */}
-          <div className="w-full">
+          {/* <div className="w-full">
             <label className="block mb-2 text-[17px]">Job Posted By</label>
             <input
               type="email"
@@ -277,7 +281,7 @@ const PostJob = () => {
             {errors.postedBy && (
               <span className="text-red-600">{errors.postedBy.message}</span>
             )}
-          </div>
+          </div> */}
 
           {/* Submit button */}
           <input

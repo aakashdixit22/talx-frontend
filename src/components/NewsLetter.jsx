@@ -5,15 +5,12 @@ import { FaEnvelope, FaRocket } from "react-icons/fa6";
 import axios from "axios";
 
 const NewsLetter = () => {
-  // State for Email Subscription
   const [email, setEmail] = useState("");
   const [subscriptionStatus, setSubscriptionStatus] = useState(""); // Success or error message
-  const [isSubscribing, setIsSubscribing] = useState(false); // Loading state
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const token = localStorage.getItem('token')
 
-  // Backend URL (Hardcoded)
-  const BACKEND_URL = "http://localhost:5000";
-
-  // Handler for Email Subscription
+  // Email subscription handler
   const handleSubscribe = async (e) => {
     e.preventDefault();
     setSubscriptionStatus("");
@@ -28,8 +25,16 @@ const NewsLetter = () => {
     setIsSubscribing(true);
 
     try {
-      const response = await axios.post(`${BACKEND_URL}/subscribe`, { email });
-
+      const response = await axios.post(
+        `http://localhost:5000/api/subscribers/subscribe`,
+        { email },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` // Include the token in the Authorization header
+          }
+        }
+      );
       if (response.data.success) {
         setSubscriptionStatus("Subscription successful! You will receive daily updates.");
         setEmail(""); // Clear the email input
