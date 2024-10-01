@@ -1,20 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { Outlet } from 'react-router-dom'
-import Navbar from './components/Navbar.jsx'
+import { useState } from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
+import { Outlet } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import ChatAssistant from './components/ChatAssistant'; // Import the chat assistant
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
-    <Navbar/>
-    <Outlet/>{/*in this children will run */}
-    
+      <Navbar />
+      <Outlet />
+      <ChatAssistant /> {/* Add the chat assistant component here */}
     </>
-  )
+  );
 }
 
 export default App;

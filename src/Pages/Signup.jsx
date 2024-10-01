@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast, Toaster } from 'react-hot-toast';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -20,15 +21,23 @@ const SignUp = () => {
         email,
         password,
       });
-      navigate('/login'); // Redirect to login page after successful signup
+      toast.success('Successfully signed up! Redirecting to login...');
+      navigate('/login');
     } catch (err) {
-      setError('Error during signup');
+      if (err.response && err.response.status === 400) {
+        toast.error('User already exists: Please login');
+      } else {
+        toast.error('Error during signup');
+      }
     }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <div className="w-full max-w-lg p-10 space-y-8 bg-white bg-opacity-10  rounded-xl shadow-2xl">
+      {/* Toaster component here */}
+      <Toaster position="top-center" reverseOrder={false} />
+      
+      <div className="w-full max-w-lg p-10 space-y-8 bg-white bg-opacity-10 rounded-xl shadow-2xl">
         <h1 className="text-4xl font-bold text-center text-black">Sign Up</h1>
         {error && <p className="text-red-500 text-center">{error}</p>}
         <form className="space-y-6" onSubmit={handleSignUp}>
