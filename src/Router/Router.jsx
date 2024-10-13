@@ -8,6 +8,7 @@ import News from "../Pages/News";
 import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
 import PrivateRoute from "../components/PrivateRoute";
+import Landing from "../Pages/Landing";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
             <PostJob />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/test",
+        element: <Landing />,
       },
       {
         path: "/my-job",
