@@ -39,7 +39,7 @@ const ChatAssistant = () => {
         // Send the user's message and chat history to the chatbot API
         const response = await axios.post('https://ayurguru-flask-api.vercel.app/general_chat', {
           message: fullMessage, // Send the full message history along with the current message
-          auth_message: 'trifectas',
+          auth_message: import.meta.env.VITE_AUTH_MESSAGE, // Pass the auth message as an environment variable
         });
 
         // Add the bot's response to the chat
