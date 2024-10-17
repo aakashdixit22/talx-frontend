@@ -67,7 +67,7 @@ const Contact = () => {
 
   return (
     <div
-      className={`xl:mt-12 flex xl:flex-row flex-col-reverse bg-zinc-900 gap-10 overflow-hidden`}
+      className={`xl:mt-12 flex xl:flex-row flex-col-reverse bg-transparent gap-10 overflow-hidden`}
     >
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
@@ -89,7 +89,7 @@ const Contact = () => {
               value={form.name}
               onChange={handleChange}
               placeholder="What's your good name?"
-              className='bg-gray-300 py-4 px-6 placeholder:text-gray-700 text-white rounded-lg outline-none border-none font-medium'
+              className='bg-gray-300 py-4 px-6 placeholder:text-gray-700 text-black rounded-lg outline-none border-none font-medium'
             />
           </label>
           <label className='flex flex-col'>
@@ -100,7 +100,7 @@ const Contact = () => {
               value={form.email}
               onChange={handleChange}
               placeholder="What's your web address?"
-              className='bg-gray-300 py-4 px-6 placeholder:text-gray-700 text-white rounded-lg outline-none border-none font-medium'
+              className='bg-gray-300 py-4 px-6 placeholder:text-gray-700 text-black rounded-lg outline-none border-none font-medium'
             />
           </label>
           <label className='flex flex-col'>
@@ -111,7 +111,7 @@ const Contact = () => {
               value={form.message}
               onChange={handleChange}
               placeholder='What you want to say?'
-              className='bg-gray-300 py-4 px-6 placeholder:text-gray-700 text-white rounded-lg outline-none border-none font-medium'
+              className='bg-gray-300 py-4 px-6 placeholder:text-gray-700 text-black rounded-lg outline-none border-none font-medium'
             />
           </label>
 

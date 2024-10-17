@@ -4,8 +4,8 @@ import { useState } from 'react';
 
 const Banner = ({ query, handleInputChange }) => {
   return (
-    <div className='max-w-screen-2xl bg-navy container mx-auto xl:px-24 px-4 md:py-20 py-14 '>
-      <h1 className='text-5xl font-bold text-white mb-5'>
+    <div className='max-w-screen-2xl bg-navy container mx-auto xl:px-24 px-4 md:py-20 py-20'>
+      <h1 className='text-5xl font-bold text-white mb-5 mt-5'>
         Find your <span className='text-specialtext'>Fucking Job</span> today
       </h1>
       <p className='text-lg text-white mb-8 font-semibold'>

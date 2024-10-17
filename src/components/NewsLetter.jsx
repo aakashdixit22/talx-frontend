@@ -75,7 +75,7 @@ const NewsLetter = () => {
           />
           <button
             type="submit"
-            className={`w-full border border-blue-600 block pl-3 py-2 bg-blue rounded-md text-white font-semibold hover:bg-blue-700 transition cursor-pointer ${
+            className={`w-full border border-blue-600 block pl-3 py-2 bg-blue-800 rounded-md text-white font-semibold hover:bg-blue-700 transition cursor-pointer ${
               isSubscribing ? "opacity-50 cursor-not-allowed" : ""
             }`}
             disabled={isSubscribing}

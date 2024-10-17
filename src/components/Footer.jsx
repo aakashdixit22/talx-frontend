@@ -57,7 +57,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-zinc-900 ">
+    <footer className="bg-transparent ">
       <div className="container px-6 py-8 mx-auto ">
         <div className="flex flex-col items-center text-center border-gray-700 border-t-2">
           <Link
@@ -85,7 +85,6 @@ const Footer = () => {
           </div>
         </div>
 
-        <hr className="my-5 border-zinc-900" />
 
         <div className="flex flex-col items-center sm:flex-row sm:justify-between">
           <p className="text-sm text-gray-500">
