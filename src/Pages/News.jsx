@@ -76,13 +76,13 @@ export default function News() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 bg-navy py-8">
       {/* Header */}
-      <header className="text-center py-10">
-        <h1 className="text-5xl font-bold text-gray-800 dark:text-white">
+      <header className="text-center py-10  mt-10">
+        <h1 className="text-5xl font-bold text-white">
           BulletinBuzz
         </h1>
-        <p className="text-lg text-gray-500 dark:text-gray-300 mt-2">
+        <p className="text-lg text-yellow-300 mt-2">
           "Your Shortcut to Today's News"
         </p>
       </header>
@@ -98,11 +98,11 @@ export default function News() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search for news..."
-            className="w-full px-4 py-2 border-0 focus:outline-none focus:ring-0 text-gray-700 dark:text-gray-300"
+            className="w-full px-4 py-2 border-0 focus:outline-none focus:ring-0 text-gray-300"
           />
           <button
             type="submit"
-            className="px-6 py-2 bg-blue text-white font-semibold hover:bg-blue-700 transition"
+            className="px-6 py-2 bg-yellow-600 text-white font-semibold hover:bg-blue-700 transition"
           >
             Search
           </button>
@@ -116,7 +116,7 @@ export default function News() {
               onClick={() => selectCategory(cat)}
               className={`px-4 py-2 m-1 rounded-md font-semibold ${
                 selectedCategory === cat
-                  ? "bg-blue text-white"
+                  ? "bg-yellow-600 text-black"
                   : "bg-gray-200 text-black hover:bg-gray-300"
               } transition`}
             >
