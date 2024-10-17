@@ -120,7 +120,6 @@ export const content = [
   "./src/**/*.{js,ts,jsx,tsx}",
 ];
 
-export const darkMode = "class";
 
 export const theme = {
   extend: {
@@ -128,8 +127,8 @@ export const theme = {
       "primary": "#141414",
       "navy": "#172554",
       "specialtext": "#fcd34d",
-      // Use updated color names from Tailwind v3.0
-      ...colors, // Includes `neutral`, `gray`, 
+
+      ...colors, 
     },
     animation: {
       aurora: "aurora 60s linear infinite",
@@ -166,7 +165,6 @@ export const plugins = [
   },
 ];
 
-// This plugin adds each Tailwind color as a global CSS variable, e.g., var(--gray-200).
 function addVariablesForColors({ addBase, theme }) {
   let allColors = flattenColorPalette(theme("colors"));
   let newVars = Object.fromEntries(Object.entries(allColors).map(([key, val]) => [`--${key}`, val]));
