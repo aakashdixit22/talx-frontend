@@ -129,7 +129,7 @@ export const theme = {
       "navy": "#172554",
       "specialtext": "#fcd34d",
       // Use updated color names from Tailwind v3.0
-      ...colors, // Includes `neutral`, `gray`, and `slate` instead of deprecated `trueGray`, `coolGray`, `blueGray`
+      ...colors, // Includes `neutral`, `gray`, 
     },
     animation: {
       aurora: "aurora 60s linear infinite",
