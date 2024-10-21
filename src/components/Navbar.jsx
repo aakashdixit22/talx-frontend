@@ -289,7 +289,7 @@ function Navbar({ className }) {
   const [active, setActive] = useState(null);
 
   return (
-    <div className={cn("fixed top-10 inset-x-0 max-w-7xl mx-auto z-50 px-4", className)}>
+    <div className={cn("fixed top-10 inset-x-0 max-w-7xl mx-auto z-30 px-4", className)}>
       <div className="flex justify-between items-center bg-black/30 border border-white/50 shadow-input px-8 py-4 rounded-full backdrop-blur-md w-full overflow-hidden">
         {/* Logo on the left */}
         <a href="/" className="text-2xl font-bold text-white whitespace-nowrap">
@@ -303,6 +303,7 @@ function Navbar({ className }) {
           <a href="/my-job" className="cursor-pointer hover:opacity-[0.9]">My Job</a>
           <a href="/test" className="cursor-pointer hover:opacity-[0.9]">Test</a>
           <a href="/post-job" className="cursor-pointer hover:opacity-[0.9]">Post A Job</a>
+          <a href="/my-applications" className="cursor-pointer hover:opacity-[0.9]">My Applications</a>
         </div>
 
         {/* Login on the right */}

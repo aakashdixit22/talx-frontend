@@ -9,6 +9,7 @@ import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
 import PrivateRoute from "../components/PrivateRoute";
 import Landing from "../Pages/Landing";
+import MyApplications from "../Pages/MyApplications";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup />,
+      },
+      {
+        path: "/my-applications",
+        element: <MyApplications />,
       },
     ],
   },
