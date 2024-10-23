@@ -11,7 +11,7 @@ const Login = () => {
   // const handleLogin = async (e) => {
   //   e.preventDefault();
   //   try {
-  //     const response = await axios.post('http://localhost:5000/api/auth/signin', {
+  //     const response = await axios.post('https://job-portal-backend-nm6k.onrender.com/api/auth/signin', {
   //       email,
   //       password,
   //     });
@@ -28,7 +28,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/signin', {
+      const response = await axios.post('https://job-portal-backend-nm6k.onrender.com/api/auth/signin', {
         email,
         password,
       });

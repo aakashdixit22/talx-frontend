@@ -42,7 +42,7 @@
 
 //     try {
 //       // Make a POST request to apply route
-//       const response = await axios.post(`http://localhost:5000/api/jobApply/apply/${_id}`, applicationData, {
+//       const response = await axios.post(`https://job-portal-backend-nm6k.onrender.com/api/jobApply/apply/${_id}`, applicationData, {
 //         headers: { 'Content-Type': 'multipart/form-data' },
 //       });
 
@@ -206,7 +206,7 @@
 //     applicationData.append('coverLetter', formData.coverLetter); // Append cover letter
 
 //     try {
-//       const response = await axios.post(`http://localhost:5000/api/jobApply/apply/${_id}`, applicationData, {
+//       const response = await axios.post(`https://job-portal-backend-nm6k.onrender.com/api/jobApply/apply/${_id}`, applicationData, {
 //         headers: { 'Content-Type': 'multipart/form-data' },
 //       });
 
@@ -371,7 +371,7 @@ const JobApplicationModal = ({ job, onClose }) => {
 
     try {
       // Make a POST request to apply route
-      const response = await axios.post(`http://localhost:5000/api/jobApply/apply/${_id}`, applicationData, {
+      const response = await axios.post(`https://job-portal-backend-nm6k.onrender.com/api/jobApply/apply/${_id}`, applicationData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 

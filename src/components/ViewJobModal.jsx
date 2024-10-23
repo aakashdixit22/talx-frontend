@@ -10,7 +10,7 @@
 // //     const fetchApplicants = async () => {
 // //       try {
 // //         const response = await axios.get(
-// //           `http://localhost:5000/api/jobApply/applicants/${job._id}`,
+// //           `https://job-portal-backend-nm6k.onrender.com/api/jobApply/applicants/${job._id}`,
 // //           {
 // //             headers: { Authorization: `Bearer ${token}` },
 // //           }
@@ -127,7 +127,7 @@
 //     const fetchApplicants = async () => {
 //       try {
 //         const response = await axios.get(
-//           `http://localhost:5000/api/jobApply/applicants/${job._id}`,
+//           `https://job-portal-backend-nm6k.onrender.com/api/jobApply/applicants/${job._id}`,
 //           {
 //             headers: { Authorization: `Bearer ${token}` },
 //           }
@@ -258,7 +258,7 @@
 //     const fetchApplicants = async () => {
 //       try {
 //         const response = await axios.get(
-//           `http://localhost:5000/api/jobApply/applicants/${job._id}`,
+//           `https://job-portal-backend-nm6k.onrender.com/api/jobApply/applicants/${job._id}`,
 //           {
 //             headers: { Authorization: `Bearer ${token}` },
 //           }
@@ -401,7 +401,7 @@
 //     const fetchApplicants = async () => {
 //       try {
 //         const response = await axios.get(
-//           `http://localhost:5000/api/jobApply/applicants/${job._id}`,
+//           `https://job-portal-backend-nm6k.onrender.com/api/jobApply/applicants/${job._id}`,
 //           {
 //             headers: { Authorization: `Bearer ${token}` },
 //           }
@@ -548,7 +548,7 @@
 //     const fetchApplicants = async () => {
 //       try {
 //         const response = await axios.get(
-//           `http://localhost:5000/api/jobApply/applicants/${job._id}`,
+//           `https://job-portal-backend-nm6k.onrender.com/api/jobApply/applicants/${job._id}`,
 //           {
 //             headers: { Authorization: `Bearer ${token}` },
 //           }
@@ -730,7 +730,7 @@ const ViewJobModal = ({ job, onClose }) => {
     const fetchApplicants = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/jobApply/applicants/${job._id}`,
+          `https://job-portal-backend-nm6k.onrender.com/api/jobApply/applicants/${job._id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

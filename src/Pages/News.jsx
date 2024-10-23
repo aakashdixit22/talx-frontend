@@ -454,7 +454,7 @@ export default function News() {
   const fetchNews = async (query, category) => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:5000/api/news/news`, {
+      const response = await axios.get(`https://job-portal-backend-nm6k.onrender.com/api/news/news`, {
         params: { query, category },
       });
       setArticles(response.data);

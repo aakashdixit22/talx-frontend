@@ -22,7 +22,7 @@
 //   const fetchJobs = async () => {
 //     setLoading(true);
 //     try {
-//       const response = await axios.get(`http://localhost:5000/api/jobs/myJobs/${email}`,
+//       const response = await axios.get(`https://job-portal-backend-nm6k.onrender.com/api/jobs/myJobs/${email}`,
 //         {
 //           headers: { Authorization: `Bearer ${token}` },
 //         }
@@ -60,7 +60,7 @@
 
 //   const handleDelete = async (jobId) => {
 //     try {
-//       await axios.delete(`http://localhost:5000/api/jobs/delete-job/${jobId}`,
+//       await axios.delete(`https://job-portal-backend-nm6k.onrender.com/api/jobs/delete-job/${jobId}`,
 //         {
 //           headers: { Authorization: `Bearer ${token}` },
 //         }
@@ -264,7 +264,7 @@ const Myjob = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/jobs/myJobs/${email}`,
+        `https://job-portal-backend-nm6k.onrender.com/api/jobs/myJobs/${email}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -308,7 +308,7 @@ const Myjob = () => {
   const handleDelete = async (jobId) => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/jobs/delete-job/${jobId}`,
+        `https://job-portal-backend-nm6k.onrender.com/api/jobs/delete-job/${jobId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

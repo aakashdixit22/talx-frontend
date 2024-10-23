@@ -26,7 +26,7 @@ const NewsLetter = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/subscribers/subscribe`,
+        `https://job-portal-backend-nm6k.onrender.com/api/subscribers/subscribe`,
         { email },
         {
           headers: {

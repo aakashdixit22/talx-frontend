@@ -24,7 +24,7 @@ const PostJob = () => {
     data.skills = selectedOption.map(option => option.value); // Store only the skill values
     data.postedBy = email;
     try {
-      const response = await axios.post("http://localhost:5000/api/jobs/post-job", data, {
+      const response = await axios.post("https://job-portal-backend-nm6k.onrender.com/api/jobs/post-job", data, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,

@@ -9,7 +9,7 @@ const MyApplications = () => {
     useEffect(() => {
         const fetchApplications = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/jobApply/my-applications/${userEmail}`);
+                const response = await axios.get(`https://job-portal-backend-nm6k.onrender.com/api/jobApply/my-applications/${userEmail}`);
 
                 if (response.data && response.data.applications) {
                     setApplications(response.data.applications);
