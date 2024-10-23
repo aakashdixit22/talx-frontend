@@ -107,20 +107,22 @@ export function InfiniteMovingCardsDemo() {
       <h2 className="text-5xl font-semibold text-gray-100 mb-6">Testimonials</h2>
       
       {/* First Row: Moving Right, Fast Speed */}
-      <div className="h-[12rem] mb-6">
+      <div className="h-[15rem] mb-9 xl:h-[12rem] xl:mb-8 md:h-[14rem] md:mb-2">
         <InfiniteMovingCards
           items={testimonials}
           direction="right"
           speed="fast"
+          
         />
       </div>
 
       {/* Second Row: Moving Left, Slower Speed */}
-      <div className="h-[12rem] mb-6">
+      <div className="h-[15rem] mb-5 xl:h-[12rem] md:h-[14rem] ">
         <InfiniteMovingCards
           items={testimonials}
           direction="left"
           speed="slow"
+         
         />
       </div>
 

@@ -450,6 +450,7 @@ const Myjob = () => {
         <EditJobModal
           job={editingJob}
           onClose={() => setShowEditModal(false)}
+          onSave={fetchJobs}
           fetchJobs={fetchJobs}
         />
       )}
