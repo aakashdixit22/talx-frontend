@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ClipLoader from 'react-spinners/ClipLoader';
 import Banner from '../components/Banner';
 import Card from '../components/Card';
 import Jobs from './Jobs';
@@ -7,8 +8,8 @@ import Sidebar from '../sidebar/Sidebar';
 import NewsLetter from '../components/NewsLetter';
 
 const Home = () => {
-  const [selectedCateogry, setSelectedCateogry] = useState(null);
-  const [jobs, setJobs] = useState([]); // Initially empty array, will be populated from the server
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
@@ -22,7 +23,7 @@ const Home = () => {
       } catch (error) {
         console.error('Error fetching jobs:', error);
       } finally {
-        setIsLoading(false); // Loading is false after request (whether success or error)
+        setIsLoading(false);
       }
     };
 
@@ -39,12 +40,12 @@ const Home = () => {
 
   // Radio filtering
   const handleChange = (event) => {
-    setSelectedCateogry(event.target.value);
+    setSelectedCategory(event.target.value);
   };
 
   // Button-based filtering functions
   const handleClick = (event) => {
-    setSelectedCateogry(event.target.value);
+    setSelectedCategory(event.target.value);
   };
 
   // Calculate the index range
@@ -68,7 +69,7 @@ const Home = () => {
     }
   };
 
-  // Main function
+  // Main filtering function
   const filteredData = (jobs, selected, query) => {
     let filteredJobs = jobs;
     if (query) {
@@ -94,43 +95,45 @@ const Home = () => {
     return filteredJobs.map((data, i) => <Card key={i} data={data} />);
   };
 
-  const result = filteredData(jobs, selectedCateogry, query);
+  const result = filteredData(jobs, selectedCategory, query);
 
   return (
     <div>
       <Banner query={query} handleInputChange={handleInputChange} />
       {/* Main content */}
-      <div className='bg-[#efecec] md:grid grid-cols-4 gap-10 lg:px-24 px-4 py-12'>
+      <div className="bg-[#efecec] md:grid grid-cols-4 gap-10 lg:px-24 px-4 py-12">
         {/* Leftside section */}
-        <div className='bg-white p-4 rounded'>
+        <div className="bg-white p-4 rounded">
           <Sidebar handleChange={handleChange} handleClick={handleClick} />
         </div>
 
         {/* Job card section */}
-        <div className='bg-white rounded-sm col-span-2 p-4'>
+        <div className="bg-white rounded-sm col-span-2 p-4">
           {isLoading ? (
-            <h1 className='font-bold'>Loading...</h1>
+            <div className="flex justify-center items-center h-32">
+              <ClipLoader color="#000" size={50} />
+            </div>
           ) : result.length > 0 ? (
             <Jobs result={result} />
           ) : (
             <>
-              <h3 className='font-bold'>{result.length} Jobs</h3>
+              <h3 className="font-bold">{result.length} Jobs</h3>
               <p>No Jobs Found</p>
             </>
           )}
 
           {/* Pagination section */}
           {result.length > 0 && (
-            <div className='flex justify-center mt-4 space-x-8'>
-              <button onClick={prevPage} disabled={currentPage === 1} className='hover:underline'>Previous</button>
-              <span className='mx-2'>Page {currentPage} of {Math.ceil(filterJobs.length / itemsPerPage)}</span>
-              <button onClick={nextPage} disabled={currentPage === Math.ceil(filterJobs.length / itemsPerPage)} className='underline'>Next</button>
+            <div className="flex justify-center mt-4 space-x-8">
+              <button onClick={prevPage} disabled={currentPage === 1} className="hover:underline">Previous</button>
+              <span className="mx-2">Page {currentPage} of {Math.ceil(filterJobs.length / itemsPerPage)}</span>
+              <button onClick={nextPage} disabled={currentPage === Math.ceil(filterJobs.length / itemsPerPage)} className="underline">Next</button>
             </div>
           )}
         </div>
 
         {/* Rightside section */}
-        <div className='bg-white p-4 rounded'>
+        <div className="bg-white p-4 rounded">
           <NewsLetter />
         </div>
       </div>

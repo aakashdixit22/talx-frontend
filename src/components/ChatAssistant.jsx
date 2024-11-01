@@ -98,7 +98,7 @@ const ChatAssistant = () => {
                 <div
                   key={index}
                   className={`p-2 rounded-lg max-w-max shadow-md animate-slide-up ${
-                    msg.sender === 'user' ? 'bg-blue text-white font-medium self-end' : 'bg-gray-300 text-black font-medium self-start'
+                    msg.sender === 'user' ? 'bg-blue-500 text-white font-medium self-end' : 'bg-gray-300 text-black font-medium self-start'
                   }`}
                 >
                   {msg.text}
