@@ -33,7 +33,7 @@ const Card = ({ data }) => {
 
   return (
     <section className='card'>
-      <Link to={"/"} className='flex gap-4 flex-col sm:flex-row items-start'>
+      <div className='flex gap-4 flex-col sm:flex-row items-start' onClick={openModal}>
         <img src={companyLogo} alt='company logo' height={100} width={100} />
         <div>
           <h4 className='text-primary mb-1'>{companyName}</h4>
@@ -73,7 +73,7 @@ const Card = ({ data }) => {
             Apply Now
           </button>
         </div>
-      </Link>
+      </div>
 
       {/* Job Application Modal */}
       {isModalOpen && (
