@@ -6,7 +6,7 @@ const Banner = ({ query, handleInputChange }) => {
   return (
     <div className='max-w-screen-2xl bg-navy container mx-auto xl:px-24 px-4 md:py-20 py-20'>
       <h1 className='text-5xl font-bold text-white mb-5 mt-5'>
-        Find your <span className='text-specialtext'>Fucking Job</span> today
+        Find your <span className='text-specialtext'>Job</span> today
       </h1>
       <p className='text-lg text-white mb-8 font-semibold'>
         Explore thousands of jobs in Computer, Engineering and Tech sectors.

@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      
       <Outlet />
       <ChatAssistant /> {/* Add the chat assistant component here */}
     </>

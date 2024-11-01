@@ -49,11 +49,11 @@ const Login = () => {
         expirationTime = new Date().getTime() + seconds * 1000;
       }
   
-      // Store the calculated expiration time in local storage
+      
       localStorage.setItem('expirationTime', expirationTime.toString());
   
-      // Redirect to home or dashboard page
-      navigate('/');
+      
+      navigate('/search');
     } catch (err) {
       setError('Invalid email or password');
     }
