@@ -32,7 +32,7 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
     try{
-          const res = await axios.post("http://localhost:5000/api/contact/submit", 
+          const res = await axios.post("https://job-portal-backend-nm6k.onrender.com/api/contact/submit", 
                form, 
                {
                  headers: {
