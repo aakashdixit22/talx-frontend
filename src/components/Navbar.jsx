@@ -49,7 +49,7 @@ const NavBar = () => {
           >
             <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.4 8.168L12 18.896l-7.334 3.869 1.4-8.168L.132 9.21l8.2-1.192z" />
           </svg>
-          JobFinder
+          TALX
         </Link>
         <ul className="lg:flex gap-8 items-center hidden">
           {navItems.map((item, i) => (

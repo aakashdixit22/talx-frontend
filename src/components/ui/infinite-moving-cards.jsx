@@ -170,7 +170,7 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item, idx) => (
           <li
-            className="w-[300px] max-w-full relative rounded-2xl border bg-[#c1b683] border-b-0 flex-shrink-0 border-slate-700 px-8 py-6 md:w-[450px]"
+            className="w-[300px] max-w-full relative rounded-2xl border bg-zinc-600 border-b-0 flex-shrink-0 border-slate-700 px-8 py-6 md:w-[450px]"
             // style={{
             //   background: "linear-gradient(180deg, var(--slate-800), var(--slate-900))",
             // }}
@@ -187,13 +187,13 @@ export const InfiniteMovingCards = ({
                   className="w-12 h-12 rounded-full object-cover"
                 />
                 <div className="ml-4">
-                  <span className="text-lg text-gray-900 font-bold">{item.name}</span>
-                  <span className="block text-md text-gray-900 font-semibold">{item.title}</span>
+                  <span className="text-lg text-white font-bold">{item.name}</span>
+                  <span className="block text-md text-white font-semibold">{item.title}</span>
                 </div>
               </div>
 
               {/* Quote section */}
-              <span className="relative z-20 text-md leading-[1.6] text-gray-900 font-normal">
+              <span className="relative z-20 text-md leading-[1.6] text-white font-normal">
                 {item.quote}
               </span>
             </blockquote>

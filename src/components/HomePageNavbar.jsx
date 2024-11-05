@@ -37,7 +37,7 @@ function Navbar({ className }) {
         
         {/* Logo on the left */}
         <a href="/" className="text-2xl font-bold text-white whitespace-nowrap">
-          JobFinder
+          TALX
         </a>
 
         {/* Center Menu for Large Screens */}
