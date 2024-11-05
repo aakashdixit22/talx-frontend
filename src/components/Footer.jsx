@@ -14,44 +14,32 @@ const Footer = () => {
   const links = [
     {
       title: "Home",
-      icon: (
-        <IconHome className="h-full w-full text-white" />
-      ),
+      icon: <IconHome className="h-full w-full text-white" />,
       href: "#",
     },
     {
       title: "Products",
-      icon: (
-        <IconTerminal2 className="h-full w-full text-white" />
-      ),
+      icon: <IconTerminal2 className="h-full w-full text-white" />,
       href: "#",
     },
     {
       title: "Components",
-      icon: (
-        <IconNewSection className="h-full w-full text-white" />
-      ),
+      icon: <IconNewSection className="h-full w-full text-white" />,
       href: "#",
     },
     {
       title: "Changelog",
-      icon: (
-        <IconExchange className="h-full w-full text-white" />
-      ),
+      icon: <IconExchange className="h-full w-full text-white" />,
       href: "#",
     },
     {
       title: "Twitter",
-      icon: (
-        <IconBrandX className="h-full w-full text-white" />
-      ),
+      icon: <IconBrandX className="h-full w-full text-white" />,
       href: "#",
     },
     {
       title: "GitHub",
-      icon: (
-        <IconBrandGithub className="h-full w-full text-neutral-100" />
-      ),
+      icon: <IconBrandGithub className="h-full w-full text-neutral-100" />,
       href: "#",
     },
   ];
@@ -73,11 +61,11 @@ const Footer = () => {
             >
               {/* SVG content */}
             </svg>
-            JobFinder{" "}
+            TALX{" "}
           </Link>
 
           <p className="max-w-md mx-auto mt-4 text-white">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Empowering your career journey-Connect with us!
           </p>
 
           <div className="flex flex-col mt-4 sm:flex-row sm:items-center sm:justify-center">
@@ -85,10 +73,9 @@ const Footer = () => {
           </div>
         </div>
 
-
         <div className="flex flex-col items-center sm:flex-row sm:justify-between">
           <p className="text-sm text-gray-500">
-            © Copyright 2021. All Rights Reserved.
+            © Copyright {new Date().getFullYear()}. All Rights Reserved.
           </p>
 
           <div className="flex mt-3 -mx-2 sm:mt-0">
