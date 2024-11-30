@@ -1,256 +1,254 @@
-// import React, { useState, useRef, useEffect, useContext } from 'react';
-// import axios from 'axios';
-// import { FaPaperclip } from 'react-icons/fa';
-// import { ContextApp } from '../utils/Context';
-// import ChatIcon from '../assets/bot.svg'; // Adjust the import path as needed
 
-// const ChatAssistant = () => {
-//   const { isOpen, setIsOpen } = useContext(ContextApp);
-//   const [message, setMessage] = useState('');
-//   const [messages, setMessages] = useState([]);
-//   const chatWindowRef = useRef(null);
-//   const fileInputRef = useRef(null);
 
-//   const toggleChat = () => {
-//     setIsOpen(!isOpen);
-//   };
+import React, { useState, useRef, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
-//   const scrollToBottom = () => {
-//     if (chatWindowRef.current) {
-//       chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
-//     }
-//   };
-
-//   const handleSendMessage = async (e) => {
-//     e.preventDefault();
-//     const currentMessage = message.trim();
-//     setMessage('');
-
-//     if (currentMessage) {
-//       setMessages([...messages, { sender: 'user', text: currentMessage }]);
-
-//       const chatHistory = messages
-//         .map((msg) => (msg.sender === 'user' ? `User: ${msg.text}` : `Bot: ${msg.text}`))
-//         .join('\n');
-//       const fullMessage = chatHistory + `\nUser: ${currentMessage}`;
-
-//       try {
-//         const response = await axios.post('https://ayurguru-flask-api.vercel.app/general_chat', {
-//           message: fullMessage,
-//           auth_message: import.meta.env.VITE_AUTH_MESSAGE,
-//         });
-
-//         const botResponse = response.data.response;
-//         setMessages((prevMessages) => [...prevMessages, { sender: 'bot', text: botResponse }]);
-//       } catch (error) {
-//         console.error('Error fetching chatbot response:', error);
-//         setMessages((prevMessages) => [...prevMessages, { sender: 'bot', text: 'Sorry, something went wrong.' }]);
-//       }
-//     }
-//   };
-
-//   const handleFileUpload = (e) => {
-//     const file = e.target.files[0];
-//     if (file) {
-//       setMessages((prevMessages) => [
-//         ...prevMessages,
-//         { sender: 'user', text: `Uploaded file: ${file.name}` },
-//       ]);
-//       fileInputRef.current.value = '';
-//     }
-//   };
-
-//   useEffect(() => {
-//     scrollToBottom();
-//   }, [messages]);
-
-//   return (
-//     <div className="fixed bottom-4 right-4 z-50">
-//       <button
-//         className="bg-white p-2 rounded-full shadow-xl hover:bg-gray-200 focus:outline-none transition-transform transform hover:scale-105 active:scale-95"
-//         onClick={toggleChat}
-//       >
-//         <img src={ChatIcon} alt="Chat Icon" className="w-12 h-12" />
-//       </button>
-
-//       {isOpen && (
-//         <div className="bg-white border border-gray-300 rounded-lg shadow-2xl w-80 h-[400px] flex flex-col overflow-hidden animate-fade-in">
-//           <div className="flex justify-between items-center p-4 bg-gradient-to-r from-blue-600 to-blue-800 text-black rounded-t-lg">
-//             <h4 className="font-bold text-lg">Chat Assistant</h4>
-//             <button onClick={toggleChat} className="text-black hover:text-gray-300 transition-colors">
-//               ✖
-//             </button>
-//           </div>
-
-//           <div ref={chatWindowRef} className="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50">
-//             {messages.length === 0 ? (
-//               <p className="p-2 rounded-lg max-w-max self-end shadow-md animate-slide-up bg-gray-300 text-black font-medium">Hello! How can I assist you today?</p>
-//             ) : (
-//               messages.map((msg, index) => (
-//                 <div
-//                   key={index}
-//                   className={`p-2 rounded-lg max-w-max shadow-md animate-slide-up ${
-//                     msg.sender === 'user' ? 'bg-blue-500 text-white font-medium self-end' : 'bg-gray-300 text-black font-medium self-start'
-//                   }`}
-//                 >
-//                   {msg.text}
-//                 </div>
-//               ))
-//             )}
-//           </div>
-
-//           <form onSubmit={handleSendMessage} className="p-3 bg-white border-t border-gray-300 flex items-center space-x-2">
-//             <input type="file" ref={fileInputRef} className="hidden" onChange={handleFileUpload} />
-//             <button type="button" className="text-gray-600 hover:text-gray-800" onClick={() => fileInputRef.current.click()}>
-//               <FaPaperclip size={20} />
-//             </button>
-//             <input
-//               type="text"
-//               className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm transition-all"
-//               placeholder="Type your message..."
-//               value={message}
-//               onChange={(e) => setMessage(e.target.value)}
-//             />
-//             <button type="submit" className="bg-blue-600 text-black px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none shadow-md transition-all">
-//               Send
-//             </button>
-//           </form>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default ChatAssistant;
-
-import React, { useState, useRef, useEffect, useContext } from 'react';
-import axios from 'axios';
-import { FaPaperclip } from 'react-icons/fa';
-import { ContextApp } from '../utils/Context';
-import ChatIcon from '../assets/bot.svg'; // Adjust the import path as needed
-
-const ChatAssistant = () => {
-  const { isOpen, setIsOpen } = useContext(ContextApp);
-  const [message, setMessage] = useState('');
+const TalxChatAssistant = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
-  const chatWindowRef = useRef(null);
-  const fileInputRef = useRef(null);
+  const [inputMessage, setInputMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef(null);
+  const inputRef = useRef(null);
 
-  const toggleChat = () => {
-    setIsOpen(!isOpen);
-  };
+  const AUTH_SECRET = import.meta.env.VITE_AUTH_SECRET;
+  const API_ENDPOINT = import.meta.env.VITE_TALX_API;
 
   const scrollToBottom = () => {
-    if (chatWindowRef.current) {
-      chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
-    }
-  };
-
-  const handleSendMessage = async (e) => {
-    e.preventDefault();
-    const currentMessage = message.trim();
-    setMessage('');
-
-    if (currentMessage) {
-      setMessages([...messages, { sender: 'user', text: currentMessage }]);
-
-      const chatHistory = messages
-        .map((msg) => (msg.sender === 'user' ? `User: ${msg.text}` : `Bot: ${msg.text}`))
-        .join('\n');
-      const fullMessage = chatHistory + `\nUser: ${currentMessage}`;
-
-      try {
-        const response = await axios.post('https://ayurguru-flask-api.vercel.app/general_chat', {
-          message: fullMessage,
-          auth_message: import.meta.env.VITE_AUTH_MESSAGE,
-        });
-
-        const botResponse = response.data.response;
-        setMessages((prevMessages) => [...prevMessages, { sender: 'bot', text: botResponse }]);
-      } catch (error) {
-        console.error('Error fetching chatbot response:', error);
-        setMessages((prevMessages) => [...prevMessages, { sender: 'bot', text: 'Sorry, something went wrong.' }]);
-      }
-    }
-  };
-
-  const handleFileUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { sender: 'user', text: `Uploaded file: ${file.name}` },
-      ]);
-      fileInputRef.current.value = '';
-    }
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
+  const simulateTypingEffect = (text, callback) => {
+    let i = 0;
+    const interval = setInterval(() => {
+      setMessages((prev) => {
+        const newMessages = [...prev];
+        const lastMessage = newMessages[newMessages.length - 1];
+        if (lastMessage.role === 'assistant') {
+          newMessages[newMessages.length - 1] = {
+            ...lastMessage,
+            content: text.slice(0, i + 1), // Show text up to i-th character
+          };
+        }
+        return newMessages;
+      });
+      i++;
+      if (i === text.length) {
+        clearInterval(interval);
+        callback();
+      }
+    }, 1); // Typing speed, adjust as needed
+  };
+
+  const handleSendMessage = async () => {
+    if (!inputMessage.trim()) return;
+
+    const userMessage = { role: 'user', content: inputMessage };
+    setMessages((prev) => [...prev, userMessage]);
+    setInputMessage('');
+    setIsLoading(true);
+
+    let assistantResponse = '';
+    let updateBuffer = ''; // Temporary buffer to hold chunks
+
+    try {
+      const response = await fetch(API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: AUTH_SECRET,
+        },
+        body: JSON.stringify({ query: inputMessage }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder();
+
+      // Start typing animation as soon as the assistant starts to respond
+      setMessages((prev) => [
+        ...prev,
+        { role: 'assistant', content: '' }, // Add an empty message to start the typing animation
+      ]);
+
+      const simulateEnd = () => setIsLoading(false);
+
+      while (true) {
+        const { done, value } = await reader?.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value);
+        updateBuffer += chunk;
+
+        // Once we have a new chunk, update the typing effect
+        simulateTypingEffect(updateBuffer, simulateEnd);
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: 'assistant',
+          content: 'Sorry, there was an error processing your request. Please try again.',
+        },
+      ]);
+      setIsLoading(false);
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage();
+    }
+  };
+
+  
+
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      <button
-        className="bg-white p-3 rounded-full shadow-lg hover:bg-gray-400 transition-transform transform hover:scale-105 focus:outline-none"
-        onClick={toggleChat}
-        style={{ zIndex: 60 }} // Ensure button stays on top
-      >
-        <img src={ChatIcon} alt="Chat Icon" className="w-10 h-10" />
-      </button>
-
       {isOpen && (
-        <div className="bg-white border border-gray-300 rounded-xl shadow-2xl w-96 h-[500px] flex flex-col overflow-hidden animate-fade-in" style={{ zIndex: 50 }}>
-          <div className="flex justify-between items-center p-4 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-t-xl">
-            <h4 className="font-bold text-lg">Chat Assistant</h4>
-            <button onClick={toggleChat} className="text-white hover:text-gray-200 transition-colors text-xl">
-              ✖
+        <div className="w-96 h-[500px] bg-white rounded-xl shadow-lg border border-gray-200 flex flex-col">
+          <div className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-4 rounded-t-xl flex justify-between items-center">
+            <h3 className="text-lg font-bold">Talx Assistant</h3>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="text-white hover:bg-indigo-700 p-2 rounded-full transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
             </button>
           </div>
 
-          <div ref={chatWindowRef} className="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50">
-            {messages.length === 0 ? (
-              <p className="p-3 rounded-lg max-w-max shadow-md bg-gray-300 text-gray-800 font-medium self-start">
-                Hello! How can I assist you today?
-              </p>
-            ) : (
-              messages.map((msg, index) => (
-                <div
-                  key={index}
-                  className={`p-3 rounded-lg max-w-xs shadow-md ${
-                    msg.sender === 'user'
-                      ? 'bg-blue-500 text-white self-end'
-                      : 'bg-gray-300 text-gray-800 self-start'
-                  } flex ${
-                    msg.sender === 'user' ? 'justify-end' : 'justify-start'
-                  }`}
+          <div className="flex-1 overflow-y-auto p-4 space-y-3 flex flex-col bg-gray-50">
+            {messages.map((msg, index) => (
+              <div
+                key={index}
+                className={`max-w-[85%] p-3 rounded-lg text-sm shadow-md ${
+                  msg.role === 'user'
+                    ? 'bg-blue-100 text-blue-900 self-end ml-auto'
+                    : 'bg-gray-200 text-gray-800 self-start mr-auto'
+                }`}
+              >
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    a: ({ href, children }) => (
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 underline hover:text-blue-800"
+                      >
+                        {children}
+                      </a>
+                    ),
+                  }}
                 >
-                  {msg.text}
-                </div>
-              ))
-            )}
+                  {msg.content}
+                </ReactMarkdown>
+              </div>
+            ))}
+            <div ref={messagesEndRef} />
           </div>
 
-          <form onSubmit={handleSendMessage} className="p-3 bg-gray-100 border-t border-gray-300 flex items-center space-x-2">
-            <input type="file" ref={fileInputRef} className="hidden" onChange={handleFileUpload} />
-            <button type="button" className="text-gray-600 hover:text-gray-800" onClick={() => fileInputRef.current.click()}>
-              <FaPaperclip size={20} />
-            </button>
+          <div className="p-4 border-t border-gray-200 flex items-center space-x-2 bg-white">
             <input
-              type="text"
-              className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white shadow-sm placeholder-gray-400"
-              placeholder="Type your message..."
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              ref={inputRef}
+              value={inputMessage}
+              onChange={(e) => setInputMessage(e.target.value)}
+              onKeyPress={handleKeyPress}
+              placeholder="Ask about Talx..."
+              className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              disabled={isLoading}
             />
-            <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-all shadow-md">
-              Send
+            <button
+              onClick={handleSendMessage}
+              disabled={isLoading || !inputMessage.trim()}
+              className={`px-4 py-2 rounded-lg transition-colors ${
+                isLoading || !inputMessage.trim()
+                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  : 'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800'
+              }`}
+            >
+              {isLoading ? (
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              )}
             </button>
-          </form>
+          </div>
         </div>
+      )}
+
+      {!isOpen && (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white rounded-full p-4 shadow-lg transition-all transform hover:scale-105"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
       )}
     </div>
   );
 };
 
-export default ChatAssistant;
+export default TalxChatAssistant;
