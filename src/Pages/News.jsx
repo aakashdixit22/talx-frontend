@@ -67,7 +67,7 @@ export default function News() {
   };
 
   return (
-    <div className="container mx-auto px-4 bg-navy py-8">
+    <div className="mx-auto px-4 bg-navy py-8">
       {/* Header */}
       <header className="text-center py-10 mt-10">
         <h1 className="text-5xl font-bold text-white">BulletinBuzz</h1>
