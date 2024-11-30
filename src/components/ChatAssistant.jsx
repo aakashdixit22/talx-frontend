@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import chatIcon from "../assets/bot.svg"
 
 const TalxChatAssistant = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -251,20 +252,8 @@ const TalxChatAssistant = () => {
           onClick={() => setIsOpen(true)}
           className="bg-white text-black p-3 sm:p-4 rounded-full shadow-2xl hover:bg-gray-400 transition-all transform hover:scale-110 active:scale-95 group"
         >
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            className="h-6 w-6 group-hover:rotate-90 transition-transform" 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor"
-          >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M4 6h16M4 12h16M4 18h16" 
-            />
-          </svg>
+          <img src={chatIcon } alt="Chat Icon" className="h-10 w-10" />
+          
         </button>
       )}
     </div>

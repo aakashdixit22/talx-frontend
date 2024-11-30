@@ -24,8 +24,8 @@ export default function Hero() {
         Step into a World of Opportunities
         </div>
         <div
-          className="font-extralight text-base md:text-4xl text-neutral-200 py-4">
-         Discover your potential and connect with the career you’ve been waiting for
+          className="font-extralight text-base md:text-4xl text-neutral-200 py-4 text-center">
+         Discover your potential and connect with the career you've been waiting.
         </div>
         <Link to="/search">
         <button
