@@ -1,5 +1,3 @@
-
-
 import React, { useState, useRef, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -32,7 +30,7 @@ const TalxChatAssistant = () => {
         if (lastMessage.role === 'assistant') {
           newMessages[newMessages.length - 1] = {
             ...lastMessage,
-            content: text.slice(0, i + 1), // Show text up to i-th character
+            content: text.slice(0, i + 1),
           };
         }
         return newMessages;
@@ -42,7 +40,7 @@ const TalxChatAssistant = () => {
         clearInterval(interval);
         callback();
       }
-    }, 1); // Typing speed, adjust as needed
+    }, 1);
   };
 
   const handleSendMessage = async () => {
@@ -53,8 +51,7 @@ const TalxChatAssistant = () => {
     setInputMessage('');
     setIsLoading(true);
 
-    let assistantResponse = '';
-    let updateBuffer = ''; // Temporary buffer to hold chunks
+    let updateBuffer = '';
 
     try {
       const response = await fetch(API_ENDPOINT, {
@@ -73,10 +70,9 @@ const TalxChatAssistant = () => {
       const reader = response.body?.getReader();
       const decoder = new TextDecoder();
 
-      // Start typing animation as soon as the assistant starts to respond
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', content: '' }, // Add an empty message to start the typing animation
+        { role: 'assistant', content: '' },
       ]);
 
       const simulateEnd = () => setIsLoading(false);
@@ -88,7 +84,6 @@ const TalxChatAssistant = () => {
         const chunk = decoder.decode(value);
         updateBuffer += chunk;
 
-        // Once we have a new chunk, update the typing effect
         simulateTypingEffect(updateBuffer, simulateEnd);
       }
     } catch (error) {
@@ -111,23 +106,33 @@ const TalxChatAssistant = () => {
     }
   };
 
-  
-
   return (
-    <div className="fixed bottom-6 right-6 z-50">
-      {isOpen && (
-        <div className="w-96 h-[500px] bg-white rounded-xl shadow-lg border border-gray-200 flex flex-col">
-          <div className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-4 rounded-t-xl flex justify-between items-center">
-            <h3 className="text-lg font-bold">Talx Assistant</h3>
-            <button
+    <div className="fixed bottom-8 right-8 z-50 transform transition-all duration-300">
+      {isOpen ? (
+        <div className="w-[450px] h-[600px] bg-white/95 backdrop-blur-lg rounded-3xl shadow-2xl border-2 border-black/5 flex flex-col overflow-hidden">
+          {/* Header */}
+          <div className="bg-black/90 text-white p-5 flex justify-between items-center">
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-600 rounded-full flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20 8h-6.75l1.24-4.85a1.25 1.25 0 00-2.38-.75L11 8H4a2 2 0 00-2 2v2a2 2 0 001 1.73V19a2 2 0 002 2h12a2 2 0 002-2v-5.27A2 2 0 0020 12v-2a2 2 0 00-2-2z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 className="text-xl font-bold tracking-wide">Talx AI</h2>
+                <p className="text-xs text-white/70">Your Intelligent Assistant</p>
+              </div>
+            </div>
+            
+            <button 
               onClick={() => setIsOpen(false)}
-              className="text-white hover:bg-indigo-700 p-2 rounded-full transition-colors"
+              className="hover:bg-white/20 p-2 rounded-full group transition-all"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="h-6 w-6 group-hover:rotate-90 transition-transform" 
+                fill="none" 
+                viewBox="0 0 24 24" 
                 stroke="currentColor"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -135,114 +140,129 @@ const TalxChatAssistant = () => {
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-4 space-y-3 flex flex-col bg-gray-50">
+          {/* Messages Container */}
+          <div className="flex-1 overflow-y-auto p-5 space-y-4 bg-gradient-to-br from-gray-50 to-gray-100 scrollbar-hide">
             {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={`max-w-[85%] p-3 rounded-lg text-sm shadow-md ${
-                  msg.role === 'user'
-                    ? 'bg-blue-100 text-blue-900 self-end ml-auto'
-                    : 'bg-gray-200 text-gray-800 self-start mr-auto'
+              <div 
+                key={index} 
+                className={`flex items-end space-x-3 ${
+                  msg.role === 'user' ? 'flex-row-reverse space-x-reverse' : ''
                 }`}
               >
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  components={{
-                    a: ({ href, children }) => (
-                      <a
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-600 underline hover:text-blue-800"
-                      >
-                        {children}
-                      </a>
-                    ),
-                  }}
+                {msg.role === 'assistant' && (
+                  <div className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M20 8h-6.75l1.24-4.85a1.25 1.25 0 00-2.38-.75L11 8H4a2 2 0 00-2 2v2a2 2 0 001 1.73V19a2 2 0 002 2h12a2 2 0 002-2v-5.27A2 2 0 0020 12v-2a2 2 0 00-2-2z"/>
+                    </svg>
+                  </div>
+                )}
+                <div 
+                  className={`max-w-[80%] p-4 rounded-3xl text-sm shadow-lg ${
+                    msg.role === 'user' 
+                      ? 'bg-black text-white self-end' 
+                      : 'bg-white text-gray-800 border border-gray-200'
+                  }`}
                 >
-                  {msg.content}
-                </ReactMarkdown>
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      a: ({ href, children }) => (
+                        <a
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-400 underline hover:text-blue-600"
+                        >
+                          {children}
+                        </a>
+                      ),
+                    }}
+                  >
+                    {msg.content}
+                  </ReactMarkdown>
+                </div>
               </div>
             ))}
             <div ref={messagesEndRef} />
           </div>
 
-          <div className="p-4 border-t border-gray-200 flex items-center space-x-2 bg-white">
-            <input
-              ref={inputRef}
-              value={inputMessage}
-              onChange={(e) => setInputMessage(e.target.value)}
-              onKeyPress={handleKeyPress}
-              placeholder="Ask about Talx..."
-              className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              disabled={isLoading}
-            />
-            <button
-              onClick={handleSendMessage}
-              disabled={isLoading || !inputMessage.trim()}
-              className={`px-4 py-2 rounded-lg transition-colors ${
-                isLoading || !inputMessage.trim()
-                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  : 'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800'
-              }`}
-            >
-              {isLoading ? (
-                <svg
-                  className="animate-spin h-5 w-5 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
+          {/* Input Area */}
+          <div className="p-5 bg-white border-t border-gray-200">
+            <div className="flex items-center space-x-3">
+              <input
+                ref={inputRef}
+                value={inputMessage}
+                onChange={(e) => setInputMessage(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder="Ask something about Talx..."
+                className="flex-1 p-3 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-black transition-all"
+                disabled={isLoading}
+              />
+              <button
+                onClick={handleSendMessage}
+                disabled={isLoading || !inputMessage.trim()}
+                className={`p-3 rounded-full transition-all ${
+                  isLoading || !inputMessage.trim()
+                    ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                    : 'bg-black text-white hover:bg-gray-800 active:bg-gray-900'
+                }`}
+              >
+                {isLoading ? (
+                  <svg 
+                    className="animate-spin h-5 w-5" 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    fill="none" 
+                    viewBox="0 0 24 24"
+                  >
+                    <circle 
+                      className="opacity-25" 
+                      cx="12" 
+                      cy="12" 
+                      r="10" 
+                      stroke="currentColor" 
+                      strokeWidth="4"
+                    ></circle>
+                    <path 
+                      className="opacity-75" 
+                      fill="currentColor" 
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                ) : (
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className="h-5 w-5" 
+                    viewBox="0 0 20 20" 
                     fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              )}
-            </button>
+                  >
+                    <path 
+                      fillRule="evenodd" 
+                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" 
+                      clipRule="evenodd" 
+                    />
+                  </svg>
+                )}
+              </button>
+            </div>
           </div>
         </div>
-      )}
-
-      {!isOpen && (
+      ) : (
         <button
           onClick={() => setIsOpen(true)}
-          className="bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white rounded-full p-4 shadow-lg transition-all transform hover:scale-105"
+          className="bg-white text-black p-4 rounded-full shadow-2xl hover:bg-gray-400 transition-all transform hover:scale-110 active:scale-95 group"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            className="h-6 w-6 group-hover:rotate-90 transition-transform" 
+            fill="none" 
+            viewBox="0 0 24 24" 
             stroke="currentColor"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M4 6h16M4 12h16M4 18h16" 
             />
           </svg>
         </button>
