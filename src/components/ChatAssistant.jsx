@@ -107,20 +107,20 @@ const TalxChatAssistant = () => {
   };
 
   return (
-    <div className="fixed bottom-8 right-8 z-50 transform transition-all duration-300">
+    <div className="fixed bottom-4 right-4 z-50 transform transition-all duration-300">
       {isOpen ? (
-        <div className="w-[450px] h-[600px] bg-white/95 backdrop-blur-lg rounded-3xl shadow-2xl border-2 border-black/5 flex flex-col overflow-hidden">
+        <div className="w-full max-w-[92vw] sm:max-w-[450px] h-[80vh] sm:h-[600px] bg-white/95 backdrop-blur-lg rounded-3xl shadow-2xl border-2 border-black/5 flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="bg-black/90 text-white p-5 flex justify-between items-center">
-            <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-600 rounded-full flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" viewBox="0 0 24 24" fill="currentColor">
+          <div className="bg-black/90 text-white p-4 sm:p-5 flex justify-between items-center">
+            <div className="flex items-center space-x-3 sm:space-x-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-400 to-purple-600 rounded-full flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-7 sm:w-7" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M20 8h-6.75l1.24-4.85a1.25 1.25 0 00-2.38-.75L11 8H4a2 2 0 00-2 2v2a2 2 0 001 1.73V19a2 2 0 002 2h12a2 2 0 002-2v-5.27A2 2 0 0020 12v-2a2 2 0 00-2-2z"/>
                 </svg>
               </div>
               <div>
-                <h2 className="text-xl font-bold tracking-wide">Talx AI</h2>
-                <p className="text-xs text-white/70">Your Intelligent Assistant</p>
+                <h2 className="text-lg sm:text-xl font-bold tracking-wide">Talx AI</h2>
+                <p className="text-xs sm:text-sm text-white/70">Your Intelligent Assistant</p>
               </div>
             </div>
             
@@ -141,23 +141,23 @@ const TalxChatAssistant = () => {
           </div>
 
           {/* Messages Container */}
-          <div className="flex-1 overflow-y-auto p-5 space-y-4 bg-gradient-to-br from-gray-50 to-gray-100 scrollbar-hide">
+          <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-3 sm:space-y-4 bg-gradient-to-br from-gray-50 to-gray-100 scrollbar-hide">
             {messages.map((msg, index) => (
               <div 
                 key={index} 
-                className={`flex items-end space-x-3 ${
+                className={`flex items-end space-x-2 sm:space-x-3 ${
                   msg.role === 'user' ? 'flex-row-reverse space-x-reverse' : ''
                 }`}
               >
                 {msg.role === 'assistant' && (
-                  <div className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-black text-white rounded-full flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M20 8h-6.75l1.24-4.85a1.25 1.25 0 00-2.38-.75L11 8H4a2 2 0 00-2 2v2a2 2 0 001 1.73V19a2 2 0 002 2h12a2 2 0 002-2v-5.27A2 2 0 0020 12v-2a2 2 0 00-2-2z"/>
                     </svg>
                   </div>
                 )}
                 <div 
-                  className={`max-w-[80%] p-4 rounded-3xl text-sm shadow-lg ${
+                  className={`max-w-[80%] p-3 sm:p-4 rounded-3xl text-sm shadow-lg ${
                     msg.role === 'user' 
                       ? 'bg-black text-white self-end' 
                       : 'bg-white text-gray-800 border border-gray-200'
@@ -187,21 +187,21 @@ const TalxChatAssistant = () => {
           </div>
 
           {/* Input Area */}
-          <div className="p-5 bg-white border-t border-gray-200">
-            <div className="flex items-center space-x-3">
+          <div className="p-4 sm:p-5 bg-white border-t border-gray-200">
+            <div className="flex items-center space-x-2 sm:space-x-3">
               <input
                 ref={inputRef}
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Ask something about Talx..."
-                className="flex-1 p-3 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-black transition-all"
+                className="flex-1 p-2 sm:p-3 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-black transition-all"
                 disabled={isLoading}
               />
               <button
                 onClick={handleSendMessage}
                 disabled={isLoading || !inputMessage.trim()}
-                className={`p-3 rounded-full transition-all ${
+                className={`p-2 sm:p-3 rounded-full transition-all ${
                   isLoading || !inputMessage.trim()
                     ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
                     : 'bg-black text-white hover:bg-gray-800 active:bg-gray-900'
@@ -249,7 +249,7 @@ const TalxChatAssistant = () => {
       ) : (
         <button
           onClick={() => setIsOpen(true)}
-          className="bg-white text-black p-4 rounded-full shadow-2xl hover:bg-gray-400 transition-all transform hover:scale-110 active:scale-95 group"
+          className="bg-white text-black p-3 sm:p-4 rounded-full shadow-2xl hover:bg-gray-400 transition-all transform hover:scale-110 active:scale-95 group"
         >
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
