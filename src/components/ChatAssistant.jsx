@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import chatIcon from "../assets/bot.svg"
+import chatIcon from "../assets/bot.svg";
 
 const TalxChatAssistant = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,6 +21,17 @@ const TalxChatAssistant = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  useEffect(() => {
+    if (isOpen) {
+      setMessages([
+        {
+          role: 'assistant',
+          content: 'Hi there! 🫡\n\nI am Talx AI, your intelligent assistant. How can I help you today?',
+        },
+      ]);
+    }
+  }, [isOpen]);
 
   const simulateTypingEffect = (text, callback) => {
     let i = 0;
@@ -177,6 +188,24 @@ const TalxChatAssistant = () => {
                           {children}
                         </a>
                       ),
+                      ul: ({ children }) => (
+                        <ul className="list-disc list-inside ml-4">{children}</ul>
+                      ),
+                      ol: ({ children }) => (
+                        <ol className="list-decimal list-inside ml-4">{children}</ol>
+                      ),
+                      h1: ({ children }) => (
+                        <h1 className="text-xl font-bold">{children}</h1>
+                      ),
+                      h2: ({ children }) => (
+                        <h2 className="text-lg font-bold">{children}</h2>
+                      ),
+                      h3: ({ children }) => (
+                        <h3 className="text-md font-bold">{children}</h3>
+                      ),
+                      p: ({ children }) => (
+                        <p className="mb-2">{children}</p>
+                      ),
                     }}
                   >
                     {msg.content}
@@ -252,8 +281,7 @@ const TalxChatAssistant = () => {
           onClick={() => setIsOpen(true)}
           className="bg-white text-black p-3 sm:p-4 rounded-full shadow-2xl hover:bg-gray-400 transition-all transform hover:scale-110 active:scale-95 group"
         >
-          <img src={chatIcon } alt="Chat Icon" className="h-10 w-10" />
-          
+          <img src={chatIcon} alt="Chat Icon" className="h-10 w-10" />
         </button>
       )}
     </div>
