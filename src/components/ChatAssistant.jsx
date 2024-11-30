@@ -8,6 +8,7 @@ const TalxChatAssistant = () => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isListening, setIsListening] = useState(false);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -115,6 +116,44 @@ const TalxChatAssistant = () => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
+    }
+  };
+
+  const handleVoiceCommand = () => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert('Your browser does not support speech recognition.');
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
+
+    recognition.onstart = () => {
+      setIsListening(true);
+    };
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setInputMessage(transcript);
+      setIsListening(false);
+    };
+
+    recognition.onerror = (event) => {
+      console.error('Speech recognition error:', event.error);
+      setIsListening(false);
+    };
+
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+
+    if (isListening) {
+      recognition.stop();
+    } else {
+      recognition.start();
     }
   };
 
@@ -272,6 +311,27 @@ const TalxChatAssistant = () => {
                     />
                   </svg>
                 )}
+              </button>
+              <button
+                onClick={handleVoiceCommand}
+                className={`p-2 sm:p-3 rounded-full transition-all ${
+                  isListening
+                    ? 'bg-red-500 text-white'
+                    : 'bg-black text-white hover:bg-gray-800 active:bg-gray-900'
+                }`}
+              >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className="h-5 w-5" 
+                  viewBox="0 0 20 20" 
+                  fill="currentColor"
+                >
+                  <path 
+                    fillRule="evenodd" 
+                    d="M10 2a3 3 0 00-3 3v6a3 3 0 006 0V5a3 3 0 00-3-3zm-7 8a7 7 0 0014 0h-2a5 5 0 01-10 0H3zm7 8a7 7 0 01-7-7H1a9 9 0 0018 0h-2a7 7 0 01-7 7z" 
+                    clipRule="evenodd" 
+                  />
+                </svg>
               </button>
             </div>
           </div>
