@@ -53,7 +53,7 @@ const TalxChatAssistant = () => {
         clearInterval(interval);
         callback();
       }
-    }, 5);
+    }, 1);
   };
 
   const handleSendMessage = async () => {
