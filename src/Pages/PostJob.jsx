@@ -4,10 +4,12 @@ import CreatableSelect from "react-select/creatable";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import PostJobBg from "../assets/postjobbg.jpg";
+import { ClipLoader } from "react-spinners";
 
 const PostJob = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const email = localStorage.getItem("email");
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -16,6 +18,7 @@ const PostJob = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
+    setLoading(true);
     if (!selectedOption || selectedOption.length === 0) {
       toast.error("Please select at least one skill.");
       return;
@@ -34,6 +37,7 @@ const PostJob = () => {
       if (response.data) {
         console.log("Job Posted Successfully: ", response.data)
         toast.success("Job posted successfully!");
+        setLoading(false);
         reset();
         setSelectedOption(null);
       }
@@ -264,9 +268,15 @@ const PostJob = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="bg-specialtext hover:text-yellow-600 text-black font-bold px-10 py-3 rounded-lg hover:opacity-90 transition duration-300 shadow-lg hover:shadow-xl"
+              className="bg-specialtext hover:bg-yellow-500 text-black font-bold px-10 py-3 rounded-lg "
             >
-              Post Job
+            {loading ? (
+              <ClipLoader size={20} color={"#fff"} loading={loading} />
+            ) : (
+              "Post Job")
+
+            }
+
             </button>
           </div>
         </form>

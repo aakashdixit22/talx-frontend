@@ -1,17 +1,17 @@
-
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AtSign, Lock, ArrowRight } from "lucide-react";
 import { toast, Toaster } from 'react-hot-toast';
 import SignUpBg from "../assets/signupbg.jpg";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,9 +22,11 @@ const SignUp = () => {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
+    setLoading(true);
     
     if (password !== confirmPassword) {
       setError('Passwords do not match');
+      setLoading(false);
       return;
     }
 
@@ -42,6 +44,8 @@ const SignUp = () => {
       } else {
         setError('Error during signup');
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -159,9 +163,16 @@ const SignUp = () => {
               <button
                 type="submit"
                 className="w-full flex items-center justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 group"
+                disabled={loading}
               >
-                Sign Up
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition" />
+                {loading ? (
+                  <ClipLoader size={20} color={"#fff"} loading={loading} />
+                ) : (
+                  <>
+                    Sign Up
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition" />
+                  </>
+                )}
               </button>
             </form>
             

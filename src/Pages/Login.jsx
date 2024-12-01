@@ -1,20 +1,22 @@
-
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { AtSign, Lock, ArrowRight } from "lucide-react";
 import LoginBg from "../assets/loginbg.jpg";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post('https://job-portal-backend-nm6k.onrender.com/api/auth/signin', {
         email,
@@ -40,8 +42,11 @@ const Login = () => {
       navigate(from, { replace: true });
     } catch (err) {
       setError('Invalid email or password');
+    } finally {
+      setLoading(false);
     }
   };
+
   useEffect(() => {
     if(localStorage.getItem('token') && localStorage.getItem('email')) {
       navigate('/search');
@@ -138,9 +143,16 @@ const Login = () => {
               <button
                 type="submit"
                 className="w-full flex items-center justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 group"
+                disabled={loading}
               >
-                Login
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition" />
+                {loading ? (
+                  <ClipLoader size={20} color={"#fff"} loading={loading} />
+                ) : (
+                  <>
+                    Login
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition" />
+                  </>
+                )}
               </button>
             </form>
             
