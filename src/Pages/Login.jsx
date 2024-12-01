@@ -134,18 +134,34 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "https://job-portal-backend-nm6k.onrender.com/api/auth/signin",
-        {
-          email,
-          password,
-        }
-      );
-
-      localStorage.setItem("token", response.data.token);
-      navigate("/dashboard");
+      const response = await axios.post('https://job-portal-backend-nm6k.onrender.com/api/auth/signin', {
+        email,
+        password,
+      });
+  
+      // Store token and email in local storage
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('email', response.data.email);
+  
+      // Calculate the expiration timestamp
+      const expiresIn = response.data.expiresIn; // e.g., "1h" or "3600s"
+      let expirationTime;
+  
+      if (expiresIn.includes('h')) {
+        const hours = parseInt(expiresIn.replace('h', ''), 10);
+        expirationTime = new Date().getTime() + hours * 60 * 60 * 1000;
+      } else if (expiresIn.includes('s')) {
+        const seconds = parseInt(expiresIn.replace('s', ''), 10);
+        expirationTime = new Date().getTime() + seconds * 1000;
+      }
+  
+      
+      localStorage.setItem('expirationTime', expirationTime.toString());
+  
+      
+      navigate('/search');
     } catch (err) {
-      setError("Invalid email or password");
+      setError('Invalid email or password');
     }
   };
 
