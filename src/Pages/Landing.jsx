@@ -96,6 +96,7 @@ import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import { useMotionValue, motion, useMotionTemplate } from 'framer-motion';
 import { cn } from '../libs/utils';
+import DeveloperSection from '../components/Developers';
 
 // Reusable Background Highlight Component
 export const PageBackgroundHighlight = ({ children, className }) => {
@@ -140,6 +141,7 @@ const Landing = () => {
       <Hero />
       <TextParallaxContentExample />
       <InfiniteMovingCardsDemo />
+      <DeveloperSection />
       <Contact />
       <Footer />
     </PageBackgroundHighlight>

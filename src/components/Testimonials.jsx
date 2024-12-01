@@ -104,7 +104,7 @@ import { InfiniteMovingCards } from "../components/ui/infinite-moving-cards";
 export function InfiniteMovingCardsDemo() {
   return (
     <div className="z-50 rounded-md flex flex-col antialiased bg-transparent bg-dot-thick-neutral-800 items-center justify-center relative overflow-hidden">
-      <h2 className="text-5xl font-semibold text-gray-100 mb-6">Testimonials</h2>
+      <h2 className="lg:text-5xl text-4xl md:text-5xl font-semibold text-gray-100 mb-6">Testimonials</h2>
       
       {/* First Row: Moving Right, Fast Speed */}
       <div className="h-[15rem] mb-9 xl:h-[12rem] xl:mb-8 md:h-[14rem] md:mb-2">
