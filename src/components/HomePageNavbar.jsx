@@ -69,10 +69,10 @@ function Navbar({ className }) {
             </div>
           ) : (
             <>
-              <a href="/login" className="p-2 text-white rounded hover:bg-white hover:text-black">
+              <a href="/login" className="p-2 hover:bg-gray-500 hover:text-white rounded bg-white text-black">
                 Login
               </a>
-              <a href="/signup" className="p-2 text-white rounded hover:bg-white hover:text-black">
+              <a href="/signup" className="p-2 hover:bg-gray-500 rounded bg-white text-black">
                 SignUp
               </a>
             </>
