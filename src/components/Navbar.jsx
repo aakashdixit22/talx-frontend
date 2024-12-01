@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
-import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const NavBar = () => {
@@ -30,7 +30,6 @@ const NavBar = () => {
     { path: "/news", title: "BulletinBuzz" },
     { path: "/post-job", title: "Post a Job" },
     { path: "/my-applications", title: "My Applications" },
-    ,
   ];
 
   return (
@@ -40,15 +39,6 @@ const NavBar = () => {
           to="/"
           className="flex flex-row items-center gap-2 text-2xl text-white font-bold"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="29"
-            height="30"
-            viewBox="0 0 24 24"
-            fill="white"
-          >
-            <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.4 8.168L12 18.896l-7.334 3.869 1.4-8.168L.132 9.21l8.2-1.192z" />
-          </svg>
           TALX
         </Link>
         <ul className="lg:flex gap-8 items-center hidden">
@@ -65,7 +55,7 @@ const NavBar = () => {
                 <span className="relative pb-1 group-hover:text-white group-hover:font-semibold transition-all">
                   {item.title}
                   <motion.div
-                    className="absolute bottom-0 left-0 h-[2px] bg-black rounded"
+                    className="absolute bottom-0 left-0 h-[2px] bg-white rounded"
                     initial={{ width: 0 }}
                     whileHover={{ width: "100%" }}
                     transition={{ duration: 0.3 }}
@@ -79,7 +69,7 @@ const NavBar = () => {
               <li>
                 <Link
                   to="/login"
-                  className="bg-gray-100 text-black font-semibold py-2 px-4 rounded hover:bg-gray-500 hover:text-gray-200 transition-all"
+                  className="bg-white text-black font-semibold py-2 px-4 rounded hover:bg-gray-200 transition-all"
                 >
                   Log in
                 </Link>
@@ -87,7 +77,7 @@ const NavBar = () => {
               <li>
                 <Link
                   to="/signup"
-                  className="bg-gray-100 text-black font-semibold py-2 px-4 rounded hover:bg-gray-500 hover:text-gray-200 transition-all"
+                  className="bg-white text-black font-semibold py-2 px-4 rounded hover:bg-gray-200 transition-all"
                 >
                   Sign up
                 </Link>
@@ -147,9 +137,9 @@ const NavBar = () => {
           )}
           <button onClick={handleMenuToggler}>
             {isMenuOpen ? (
-              <FaXmark size={25} className="text-white" />
+              <FaTimes size={25} className="text-white" />
             ) : (
-              <FaBarsStaggered size={25} className="text-white" />
+              <FaBars size={25} className="text-white" />
             )}
           </button>
         </div>
@@ -230,5 +220,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
-

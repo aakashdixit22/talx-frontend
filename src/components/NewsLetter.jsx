@@ -1,7 +1,5 @@
-// src/components/NewsLetter.jsx
-
 import React, { useState } from "react";
-import { FaEnvelope, FaRocket } from "react-icons/fa6";
+import { FaEnvelope } from "react-icons/fa";
 import axios from "axios";
 
 const NewsLetter = () => {
@@ -52,10 +50,10 @@ const NewsLetter = () => {
   };
 
   return (
-    <div className="space-y-8 p-6 max-w-md mx-auto">
+    <div className="bg-gray-100 p-6 rounded-lg shadow-lg max-w-md mx-auto mt-10">
       {/* Email Subscription Section */}
-      <div>
-        <h3 className="text-lg font-bold mb-2 flex items-center gap-2">
+      <div className="bg-white p-6 rounded-lg shadow-md">
+        <h3 className="text-xl font-bold mb-2 flex items-center gap-2 text-gray-800">
           <FaEnvelope />
           Email for Jobs
         </h3>
@@ -75,12 +73,38 @@ const NewsLetter = () => {
           />
           <button
             type="submit"
-            className={`w-full border border-blue-600 block pl-3 py-2 bg-blue-800 rounded-md text-white font-semibold hover:bg-blue-700 transition cursor-pointer ${
+            className={`w-full py-2 bg-specialtext hover:bg-yellow-500  text-black font-semibold rounded-md transition duration-300 ${
               isSubscribing ? "opacity-50 cursor-not-allowed" : ""
             }`}
             disabled={isSubscribing}
           >
-            {isSubscribing ? "Subscribing..." : "Subscribe"}
+            {isSubscribing ? (
+              <div className="flex items-center justify-center">
+                <svg
+                  className="animate-spin h-5 w-5 mr-3"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                Subscribing...
+              </div>
+            ) : (
+              "Subscribe"
+            )}
           </button>
           {subscriptionStatus && (
             <p
@@ -92,26 +116,6 @@ const NewsLetter = () => {
             </p>
           )}
         </form>
-      </div>
-
-      {/* Resume Upload Section (Placeholder) */}
-      <div>
-        <h3 className="text-lg font-bold mb-2 flex items-center gap-2">
-          <FaRocket />
-          Get Noticed Faster
-        </h3>
-        <p className="text-base text-gray-600">
-          Upload your resume to get the latest jobs in your inbox.
-        </p>
-        <div className="w-full space-y-4 mt-4">
-          <input
-            type="submit"
-            value={"Upload Your Resume"}
-            className="w-full border border-gray-300 block pl-3 py-2 bg-blue rounded-md text-white font-semibold hover:bg-blue-700 transition cursor-not-allowed"
-            disabled
-            title="Resume upload functionality is not implemented."
-          />
-        </div>
       </div>
     </div>
   );

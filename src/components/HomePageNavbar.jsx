@@ -87,17 +87,17 @@ function Navbar({ className }) {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <motion.div
-          className="bg-white border rounded-lg shadow-lg py-4 mt-2 lg:hidden"
+                <motion.div
+          className="bg-white bg-opacity-25 backdrop-blur-lg mt-2 border rounded-lg shadow-lg py-1 lg:hidden"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <ul className="space-y-4 text-center">
-            <li><a href="/" className="text-gray-600 hover:text-black">Home</a></li>
-            <li><a href="/search" className="text-gray-600 hover:text-black">Find Job</a></li>
-            <li><a href="/news" className="text-gray-600 hover:text-black">BulletinBuzz</a></li>
-            <li><a href="/post-job" className="text-gray-600 hover:text-black">Post A Job</a></li>
+          <ul className="space-y-3 text-center">
+            <li><a href="/" className="text-gray-200 hover:text-gray-400">Home</a></li>
+            <li><a href="/search" className="text-gray-200 hover:text-gray-400">Find Job</a></li>
+            <li><a href="/news" className="text-gray-200 hover:text-gray-400">BulletinBuzz</a></li>
+            <li><a href="/post-job" className="text-gray-200 hover:text-gray-400">Post A Job</a></li>
           </ul>
         </motion.div>
       )}

@@ -32,33 +32,33 @@ const Card = ({ data }) => {
   };
 
   return (
-    <section className='card'>
-      <div className='flex gap-4 flex-col sm:flex-row items-start' onClick={openModal}>
-        <img src={companyLogo} alt='company logo' height={100} width={100} />
-        <div>
-          <h4 className='text-primary mb-1'>{companyName}</h4>
-          <h4 className='text-lg font-semibold'>{jobTitle}</h4>
+    <section className='bg-white p-6 rounded-lg shadow-lg mb-6'>
+      <div className='flex gap-4 flex-col sm:flex-row items-start'>
+        <img src={companyLogo} alt='company logo' className='w-24 h-24 object-cover rounded-md' />
+        <div className='flex-1'>
+          <h4 className='text-primary mb-1 text-xl font-bold'>{companyName}</h4>
+          <h4 className='text-2xl font-semibold mb-2'>{jobTitle}</h4>
 
-          <div className='flex flex-col gap-2 mb-2 text-base'>
+          <div className='flex flex-col gap-2 mb-4 text-gray-700'>
             <span className='flex items-center gap-2'>
-              <FiMapPin /> {jobLocation}
+              <FiMapPin className='text-gray-500' /> {jobLocation}
             </span>
             <span className='flex items-center gap-2'>
-              <FiClock /> {employmentType} - {experienceLevel} {/* Added experience level */}
+              <FiClock className='text-gray-500' /> {employmentType} - {experienceLevel} {/* Added experience level */}
             </span>
             <span className='flex gap-2 items-center'>
-              <FiDollarSign /> {minPrice}-{maxPrice} {salaryType}
+              <FiDollarSign className='text-gray-500' /> {minPrice}-{maxPrice} {salaryType}
             </span>
             <span className='flex gap-2 items-center'>
-              <FiCalendar /> {formatDate(postingDate.$date)} {/* Format date */}
+              <FiCalendar className='text-gray-500' /> {formatDate(postingDate.$date)} {/* Format date */}
             </span>
           </div>
-          <p className='text-base text-primary'>{description}</p>
+          <p className='text-base text-gray-800 mb-4'>{description}</p>
 
           {/* Skills section */}
-          <div className="skills mt-2">
-            <h5 className='font-semibold'>Required Skills:</h5>
-            <ul className='list-disc ml-4'>
+          <div className="skills mb-4">
+            <h5 className='font-semibold text-lg mb-2'>Required Skills:</h5>
+            <ul className='list-disc ml-4 text-gray-700'>
               {skills.map((skill, index) => (
                 <li key={index}>{skill}</li>
               ))}
@@ -68,7 +68,7 @@ const Card = ({ data }) => {
           {/* Apply Now button */}
           <button
             onClick={openModal}
-            className="apply-button text-white bg-primary hover:bg-secondary py-2 px-4 rounded-md mt-4 inline-block"
+            className="text-black font-bold bg-specialtext hover:bg-yellow-500  py-2 px-4 rounded-md mt-4 inline-block transition duration-300"
           >
             Apply Now
           </button>
