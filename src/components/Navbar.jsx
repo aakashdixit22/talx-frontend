@@ -33,7 +33,7 @@ const NavBar = () => {
   ];
 
   return (
-    <header className="max-w-screen-2xl z-60 container mx-auto xl:px-24 bg-navy px-4">
+    <header className="max-w-screen z-60 mx-auto xl:px-24 bg-navy px-4">
       <nav className="flex justify-between items-center py-6">
         <Link
           to="/"
