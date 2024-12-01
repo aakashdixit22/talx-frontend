@@ -24,7 +24,6 @@ const Card = ({ data }) => {
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-
   // Convert MongoDB date to readable format
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -50,7 +49,7 @@ const Card = ({ data }) => {
               <FiDollarSign className='text-gray-500' /> {minPrice}-{maxPrice} {salaryType}
             </span>
             <span className='flex gap-2 items-center'>
-              <FiCalendar className='text-gray-500' /> {formatDate(postingDate.$date)} {/* Format date */}
+              <FiCalendar className='text-gray-500' /> {postingDate.slice(0,10)} {/* Format date */}
             </span>
           </div>
           <p className='text-base text-gray-800 mb-4'>{description}</p>

@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { AtSign, Lock, ArrowRight } from "lucide-react";
 import LoginBg from "../assets/loginbg.jpg";
@@ -10,6 +10,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -35,7 +37,7 @@ const Login = () => {
   
       localStorage.setItem('expirationTime', expirationTime.toString());
   
-      navigate('/search');
+      navigate(from, { replace: true });
     } catch (err) {
       setError('Invalid email or password');
     }

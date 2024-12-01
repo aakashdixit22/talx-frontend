@@ -1,7 +1,8 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
 const PrivateRoute = ({ children }) => {
+  const location = useLocation();
   const token = localStorage.getItem('token');
   const expirationTime = localStorage.getItem('expirationTime'); // Timestamp when the token expires
 
@@ -15,7 +16,7 @@ const PrivateRoute = ({ children }) => {
       localStorage.removeItem('token');
       localStorage.removeItem('email');
       localStorage.removeItem('expirationTime');
-      return <Navigate to="/login" />;
+      return <Navigate to="/login" state={{ from: location }} />;
     }
 
     // Token is still valid
@@ -23,7 +24,7 @@ const PrivateRoute = ({ children }) => {
   }
 
   // No token or expired token
-  return <Navigate to="/login" />;
+  return <Navigate to="/login" state={{ from: location }} />;
 };
 
 export default PrivateRoute;
