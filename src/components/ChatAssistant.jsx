@@ -53,7 +53,7 @@ const TalxChatAssistant = () => {
         clearInterval(interval);
         callback();
       }
-    }, 1);
+    }, 5);
   };
 
   const handleSendMessage = async () => {
@@ -65,7 +65,7 @@ const TalxChatAssistant = () => {
     setIsLoading(true);
 
     let updateBuffer = '';
-
+    
     try {
       const response = await fetch(API_ENDPOINT, {
         method: 'POST',
@@ -73,7 +73,7 @@ const TalxChatAssistant = () => {
           'Content-Type': 'application/json',
           Authorization: AUTH_SECRET,
         },
-        body: JSON.stringify({ query: inputMessage }),
+        body: JSON.stringify({ query: inputMessage, chat_history: messages }),
       });
 
       if (!response.ok) {
