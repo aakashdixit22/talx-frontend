@@ -41,7 +41,7 @@ const MyApplications = () => {
     };
 
     return (
-        <div className="container mx-auto p-8 min-h-screen bg-navy">
+        <div className=" mx-auto p-8 min-h-screen bg-navy">
             <h1 className="text-4xl font-bold text-white mb-10 text-center border-b-4 border-white pb-4">
                 My Applications
             </h1>
