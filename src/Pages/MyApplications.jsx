@@ -73,7 +73,7 @@ const MyApplications = () => {
                             </p>
                             <button
                                 onClick={() => handleDownloadResume(application.resume)}
-                                className="bg-black text-white p-2 font-semibold mt-4 block text-center border border-white rounded-lg py-2 transition-colors hover:bg-gray-500 hover:text-white"
+                                className="bg-specialtext hover:bg-yellow-600 text-black p-2 font-semibold mt-4 block text-center border border-white rounded-lg py-2 transition-colors"
                             >
                                 Download Resume
                             </button>
