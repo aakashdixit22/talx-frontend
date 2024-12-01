@@ -26,7 +26,7 @@ const NavBar = () => {
   const navItems = [
     { path: "/", title: "Home" },
     { path: "/search", title: "Find Job" },
-    { path: "/my-job", title: "My Job" },
+    { path: "/my-job", title: "My Jobs" },
     { path: "/news", title: "BulletinBuzz" },
     { path: "/post-job", title: "Post a Job" },
     { path: "/my-applications", title: "My Applications" },
