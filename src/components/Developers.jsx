@@ -55,15 +55,15 @@ const DeveloperSection = () => {
       name: "Aakash Dixit",
       designation: "Full Stack Web Developer",
       image: AakashImg,
-      githubLink: "https://github.com/johndoe",
-      linkedinLink: "https://linkedin.com/in/johndoe"
+      githubLink: "https://github.com/aakashdixit22",
+      linkedinLink: "https://www.linkedin.com/in/aakash-dixit-72a276258"
     },
     {
       name: "Abhay Dixit",
       designation: "Full Stack Web Developer",
       image: AbhayImg,
-      githubLink: "https://github.com/janesmith",
-      linkedinLink: "https://linkedin.com/in/janesmith"
+      githubLink: "https://github.com/abhaydixit07",
+      linkedinLink: "https://www.linkedin.com/in/abhay-dixit-546b85254"
     }
   ];
 

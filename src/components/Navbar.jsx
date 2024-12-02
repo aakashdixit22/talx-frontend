@@ -30,6 +30,7 @@ const NavBar = () => {
     { path: "/news", title: "BulletinBuzz" },
     { path: "/post-job", title: "Post a Job" },
     { path: "/my-applications", title: "My Applications" },
+    {path: "/resume", title: "ResumeAI" }
   ];
 
   return (

@@ -46,6 +46,7 @@ function Navbar({ className }) {
           <a href="/search" className="cursor-pointer hover:opacity-[0.9]">Find Job</a>
           <a href="/news" className="cursor-pointer hover:opacity-[0.9]">BulletinBuzz</a>
           <a href="/post-job" className="cursor-pointer hover:opacity-[0.9]">Post A Job</a>
+          <a href="/resume" className="cursor-pointer hover:opacity-[0.9]">ResumeAI</a>
         </div>
 
         {/* Profile Icon and Auth Links */}
@@ -93,11 +94,12 @@ function Navbar({ className }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <ul className="space-y-3 text-center">
+          <ul className="space-y-0.5 text-center">
             <li><a href="/" className="text-gray-200 hover:text-gray-400">Home</a></li>
             <li><a href="/search" className="text-gray-200 hover:text-gray-400">Find Job</a></li>
             <li><a href="/news" className="text-gray-200 hover:text-gray-400">BulletinBuzz</a></li>
             <li><a href="/post-job" className="text-gray-200 hover:text-gray-400">Post A Job</a></li>
+            <li><a href="/resume" className="text-gray-200 hover:text-gray-400">ResumeAI</a></li>
           </ul>
         </motion.div>
       )}

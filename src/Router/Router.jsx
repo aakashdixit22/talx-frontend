@@ -87,10 +87,10 @@ const router = createBrowserRouter([
       {
         path: "/my-applications",
         element: (
-          <>
+          <PrivateRoute>
             <Navbar />
             <MyApplications />
-          </>
+          </PrivateRoute>
         ),
       },
       {
