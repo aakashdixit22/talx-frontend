@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const ResumeAnalyzer = () => {
   const [file, setFile] = useState(null);
   const [jobDescription, setJobDescription] = useState("");
-  const [summary, setSummary] = useState("");
+  const [analysis, setAnalysis] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -33,12 +33,12 @@ const ResumeAnalyzer = () => {
       });
 
       const data = await response.json();
-      console.log(data);
 
       if (!response.ok) {
         setError(data.error || "Something went wrong.");
       } else {
-        setSummary(data.summary);
+        console.log(data);
+        setAnalysis(data.summary);
       }
     } catch (err) {
       setError("An error occurred. Please try again.");
@@ -72,9 +72,7 @@ const ResumeAnalyzer = () => {
           />
         </div>
 
-        {error && (
-          <p className="text-red-500 text-sm mb-4">{error}</p>
-        )}
+        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
 
         <button
           onClick={handleUpload}
@@ -85,13 +83,31 @@ const ResumeAnalyzer = () => {
               : "bg-blue-500 hover:bg-blue-600"
           }`}
         >
-          {loading ? "Uploading..." : "Generate Summary"}
+          {loading ? "Uploading..." : "Generate Analysis"}
         </button>
 
-        {summary && (
+        {analysis && (
           <div className="mt-6 bg-gray-100 p-4 rounded-lg">
-            <h2 className="text-lg font-semibold mb-2">Summary:</h2>
-            <p className="text-gray-700 text-sm">{summary}</p>
+            <h2 className="text-lg font-semibold mb-2">Analysis Summary:</h2>
+            <p className="text-gray-700 text-sm mb-2">
+              <strong>Matching Analysis:</strong> {analysis.matching_analysis}
+            </p>
+            <p className="text-gray-700 text-sm mb-2">
+              <strong>Description:</strong> {analysis.description}
+            </p>
+            <p className="text-gray-700 text-sm mb-2">
+              <strong>Score:</strong> {analysis.score} / 100
+            </p>
+            <div className="text-gray-700 text-sm mb-2">
+              <strong>Recommendations:</strong>
+              <ul className="list-disc list-inside mt-1 text-sm">
+                {analysis.recommendation.split("\n").map((rec, index) => (
+                  <li key={index} className="text-gray-700">
+                    {rec}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         )}
       </div>
