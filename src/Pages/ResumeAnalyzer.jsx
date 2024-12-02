@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const ResumeAnalyzer = () => {
   const [file, setFile] = useState(null);
+  const [jobDescription, setJobDescription] = useState("");
   const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -19,6 +20,7 @@ const ResumeAnalyzer = () => {
 
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("job_description", jobDescription);
 
     try {
       setLoading(true);
@@ -31,6 +33,7 @@ const ResumeAnalyzer = () => {
       });
 
       const data = await response.json();
+      console.log(data);
 
       if (!response.ok) {
         setError(data.error || "Something went wrong.");
@@ -57,6 +60,15 @@ const ResumeAnalyzer = () => {
             accept=".pdf"
             onChange={handleFileChange}
             className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+          />
+        </div>
+
+        <div className="mb-4">
+          <textarea
+            placeholder="Enter job description"
+            value={jobDescription}
+            onChange={(e) => setJobDescription(e.target.value)}
+            className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none p-2"
           />
         </div>
 
