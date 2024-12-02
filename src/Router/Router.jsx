@@ -11,6 +11,7 @@ import PrivateRoute from "../components/PrivateRoute";
 import Landing from "../Pages/Landing";
 import MyApplications from "../Pages/MyApplications";
 import HomePageNavbar from "../components/HomePageNavbar";
+import ResumeAnalyzer from "../Pages/ResumeAnalyzer";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -92,6 +93,15 @@ const router = createBrowserRouter([
           </>
         ),
       },
+      {
+        path: "/resume",
+        element: (
+          <>
+            <HomePageNavbar />
+            <ResumeAnalyzer />
+          </>
+        ),
+      }
     ],
   },
 ]);
