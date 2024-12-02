@@ -13,7 +13,7 @@ const TalxChatAssistant = () => {
   const inputRef = useRef(null);
 
   const AUTH_SECRET = import.meta.env.VITE_AUTH_SECRET;
-  const API_ENDPOINT = import.meta.env.VITE_TALX_API;
+  const API_ENDPOINT_CHAT_ASSISTANT = `${import.meta.env.VITE_TALX_API}/genie`;
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -67,7 +67,7 @@ const TalxChatAssistant = () => {
     let updateBuffer = '';
     
     try {
-      const response = await fetch(API_ENDPOINT, {
+      const response = await fetch(API_ENDPOINT_CHAT_ASSISTANT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
