@@ -1,16 +1,12 @@
 "use client";
-
 import { motion } from "framer-motion";
 import React from "react";
 import { AuroraBackground } from "./ui/aurora-background";
-import {Link} from "react-router-dom"
-
-
+import { Link } from "react-router-dom";
 
 export default function Hero() {
-
   return (
-    (<AuroraBackground>
+    <AuroraBackground>
       <motion.div
         initial={{ opacity: 0.0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -19,22 +15,45 @@ export default function Hero() {
           duration: 0.8,
           ease: "easeInOut",
         }}
-        className="relative flex flex-col gap-4 items-center justify-center px-4">
-        <div className="text-3xl md:text-7xl font-bold text-white text-center">
-        Step into a World of Opportunities
+        className="relative flex flex-col gap-6 items-center justify-center min-h-screen px-4 py-16"
+      >
+        <div className="max-w-4xl">
+          <h1 className="text-4xl md:text-6xl lg:text-8xl font-extrabold text-white text-center leading-tight mb-4 tracking-tight">
+            Step into a World of Opportunities
+          </h1>
+          <p className="text-lg md:text-2xl lg:text-3xl text-neutral-200 text-center font-light mb-8 max-w-3xl mx-auto">
+            Discover your potential and connect with the career you've been waiting for.
+          </p>
         </div>
-        <div
-          className="font-extralight text-base md:text-4xl text-neutral-200 py-4 text-center">
-         Discover your potential and connect with the career you've been waiting.
-        </div>
-        <Link to="/search">
-        <button
+        
+        <div className="flex gap-4 items-center">
+          <Link 
+            to="/search" 
+            className="group relative inline-flex items-center justify-center"
+          >
+            
+            <button className="relative px-6 py-3 bg-white text-black rounded-xl font-semibold 
+              transform transition-all duration-300 
+              hover:scale-105 hover:shadow-xl 
+              focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
+              Explore Jobs
+            </button>
+          </Link>
           
-          className="bg-white rounded-md w-fit text-black px-4 py-2">
-          Explore Jobs
-        </button>
-        </Link>
+          <Link 
+            to="/search" 
+            className="group relative inline-flex items-center justify-center"
+          >
+            
+            <button className="relative px-6 py-3 bg-white text-black rounded-xl font-semibold 
+              transform transition-all duration-300 
+              hover:scale-105 hover:shadow-xl 
+              focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
+              ResumeAI
+            </button>
+          </Link>
+        </div>
       </motion.div>
-    </AuroraBackground>)
+    </AuroraBackground>
   );
 }
