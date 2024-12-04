@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import chatIcon from "../assets/bot.svg";
+import talxIcon from "../assets/talx.svg";
+import aiChatBot from "../assets/Chat.svg"
 
 const TalxChatAssistant = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -165,9 +167,7 @@ const TalxChatAssistant = () => {
           <div className="bg-black/90 text-white p-4 sm:p-5 flex justify-between items-center">
             <div className="flex items-center space-x-3 sm:space-x-4">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-400 to-purple-600 rounded-full flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-7 sm:w-7" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20 8h-6.75l1.24-4.85a1.25 1.25 0 00-2.38-.75L11 8H4a2 2 0 00-2 2v2a2 2 0 001 1.73V19a2 2 0 002 2h12a2 2 0 002-2v-5.27A2 2 0 0020 12v-2a2 2 0 00-2-2z"/>
-                </svg>
+                <img src={aiChatBot} alt="Chat Icon" className="h-6 w-6 sm:h-8 sm:w-8" />
               </div>
               <div>
                 <h2 className="text-lg sm:text-xl font-bold tracking-wide">Talx AI</h2>
@@ -201,10 +201,8 @@ const TalxChatAssistant = () => {
                 }`}
               >
                 {msg.role === 'assistant' && (
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-black text-white rounded-full flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M20 8h-6.75l1.24-4.85a1.25 1.25 0 00-2.38-.75L11 8H4a2 2 0 00-2 2v2a2 2 0 001 1.73V19a2 2 0 002 2h12a2 2 0 002-2v-5.27A2 2 0 0020 12v-2a2 2 0 00-2-2z"/>
-                    </svg>
+                  <div className="w-9 h-9 sm:w-11 sm:h-11 bg-black text-white rounded-full flex items-center justify-center">
+                    <img src={talxIcon} alt="Talx AI" className="h-7 w-7 sm:h-8 sm:w-8" />
                   </div>
                 )}
                 <div 
