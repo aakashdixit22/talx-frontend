@@ -52,6 +52,7 @@ export const AlternatingFeaturesSection = () => {
       heading: "Resume Transformation Engine",
       title: "Intelligent Resume Crafting",
       description: "Advanced resume analysis powered by machine learning. We decode industry-specific keywords, optimize formatting, and provide strategic recommendations to elevate your professional narrative.",
+      linkTo: '/resume'
     }
   ];
 
