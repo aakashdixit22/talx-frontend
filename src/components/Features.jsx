@@ -503,7 +503,7 @@ import { ContextApp } from "../utils/Context";
 
 // Import your images (ensure paths are correct)
 import Jobspic from "../assets/testFiles/test2.gif";
-import NewsPic from "../assets/testFiles/test4.png";
+import NewsPic from "../assets/testFiles/newsGraphic.png";
 import ChatbotPic from "../assets/testFiles/test11.png";
 import ResumeAnalysisPic from "../assets/testFiles/test7.gif";
 
@@ -597,7 +597,7 @@ const FeatureSection = ({
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
-            className="relative w-100 h-100 md:w-96 md:h-96" // Set consistent dimensions
+            className="relative w-120 h-120 md:w-100 md:h-100" // Set consistent dimensions
           >
             
             <img 
