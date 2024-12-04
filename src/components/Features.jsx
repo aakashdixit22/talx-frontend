@@ -118,8 +118,7 @@ const FeatureSection = ({
             rounded-3xl  
             p-10 
             space-y-6 
-            transform 
-            hover:scale-105 
+            transform
             transition-transform 
             duration-500 
             ease-in-out 
@@ -150,12 +149,11 @@ const FeatureSection = ({
           {/* Modern Action Button */}
 
             <Link to={linkTo}>
-              <button className="group relative px-8 py-4 rounded-full overflow-hidden border border-white/20 bg-white/5 text-white">
+              <button className="group relative px-8 py-4 rounded-full overflow-hidden border bg-white text-black font-bold shadow-md shadow-primary hover:bg-gray-400 transition-all">
                 <span className="relative z-10 flex items-center">
                   Explore Feature
                   <FiArrowUpRight className="ml-2 transition-transform group-hover:translate-x-2" />
                 </span>
-                <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </button>
             </Link>
 

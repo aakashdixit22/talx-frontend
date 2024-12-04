@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
-    <AuroraBackground>
       <motion.div
         initial={{ opacity: 0.0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -32,7 +31,7 @@ export default function Hero() {
             className="group relative inline-flex items-center justify-center"
           >
             
-            <button className="relative px-6 py-3 bg-white text-black rounded-xl font-semibold 
+            <button className="relative px-6 py-3 hover:bg-gray-400 bg-white text-black rounded-xl font-semibold 
               transform transition-all duration-300 
               hover:scale-105 hover:shadow-xl 
               focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
@@ -45,7 +44,7 @@ export default function Hero() {
             className="group relative inline-flex items-center justify-center"
           >
             
-            <button className="relative px-6 py-3 bg-white text-black rounded-xl font-semibold 
+            <button className="relative px-6 py-3 bg-white hover:bg-gray-400 text-black rounded-xl font-semibold 
               transform transition-all duration-300 
               hover:scale-105 hover:shadow-xl 
               focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
@@ -54,6 +53,5 @@ export default function Hero() {
           </Link>
         </div>
       </motion.div>
-    </AuroraBackground>
   );
 }
