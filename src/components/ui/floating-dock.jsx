@@ -52,7 +52,7 @@ const FloatingDockDesktop = ({
         className
       )}>
       {items.map((item) => (
-        <IconContainer mouseX={mouseX} key={item.title} {...item} />
+        <IconContainer mouseX={mouseX} href={item.href} key={item.title} {...item} />
       ))}
     </motion.div>)
   );
@@ -103,7 +103,7 @@ function IconContainer({
   const [hovered, setHovered] = useState(false);
 
   return (
-    (<Link href={href}>
+    (<a href={href}>
       <motion.div
         ref={ref}
         style={{ width, height }}
@@ -117,7 +117,7 @@ function IconContainer({
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: 2, x: "-50%" }}
               className="px-2 py-0.5 whitespace-pre rounded-md bg-gray-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-gray-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs">
-              {title}
+              {title} 
             </motion.div>
           )}
         </AnimatePresence>
@@ -127,7 +127,7 @@ function IconContainer({
           {icon}
         </motion.div>
       </motion.div>
-    </Link>)
+    </a>)
   );
 }
 
