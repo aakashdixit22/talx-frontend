@@ -639,7 +639,7 @@ const FeatureSection = ({
               {title}
             </h2>
             
-            <p className="text-xl text-white/80 leading-relaxed mb-8">
+            <p className="text-lg text-white/80 leading-relaxed mb-8">
               {description}
             </p>
           </div>
