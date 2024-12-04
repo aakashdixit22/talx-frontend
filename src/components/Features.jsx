@@ -629,13 +629,13 @@ const FeatureSection = ({
         >
           <div>
             <div className="flex items-center space-x-4 mb-4">
-              <Icon className="text-4xl text-white/70" />
+              <Icon className="text-3xl text-white/70" />
               <p className="text-lg text-white/70 uppercase tracking-widest">
                 {subheading}
               </p>
             </div>
             
-            <h2 className="text-5xl font-extrabold text-transparent bg-clip-text bg-white mb-6">
+            <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-white mb-6">
               {title}
             </h2>
             
