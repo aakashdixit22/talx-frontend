@@ -55,7 +55,7 @@
 ![BulletinBuzz and Chat Assistant](https://github.com/aakashdixit22/talx-frontend/blob/main/public/demo/IMG_3.png?raw=true)  
 *The BulletinBuzz section for the latest news and the Chat Assistant AI for guidance and support.*  
 
-### 📄 ResumeAI in Action (GIF)  
+### 📄 ResumeAI in Action  
 ![ResumeAI Working](https://github.com/aakashdixit22/talx-frontend/blob/main/public/demo/ResumeAI_GIF.gif?raw=true)  
 *Demonstrating the AI-powered resume analyzer providing insights and recommendations.*  
 
