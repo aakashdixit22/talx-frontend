@@ -38,7 +38,7 @@ const EditJobModal = ({ job, onClose, onSave }) => {
     data.skills = selectedOption.map((option) => option.value);
 
     try {
-      await axios.put(`https://job-portal-backend-nm6k.onrender.com/api/jobs/edit-job/${job._id}`, data,
+      await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/jobs/edit-job/${job._id}`, data,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }

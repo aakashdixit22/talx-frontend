@@ -24,7 +24,7 @@ const NewsLetter = () => {
 
     try {
       const response = await axios.post(
-        `https://job-portal-backend-nm6k.onrender.com/api/subscribers/subscribe`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/subscribers/subscribe`,
         { email },
         {
           headers: {

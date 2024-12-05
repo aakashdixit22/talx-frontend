@@ -18,7 +18,7 @@ const Home = () => {
     const fetchJobs = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get('https://job-portal-backend-nm6k.onrender.com/api/jobs/all-jobs');
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/jobs/all-jobs`);
         setJobs(response.data);
       } catch (error) {
         console.error('Error fetching jobs:', error);

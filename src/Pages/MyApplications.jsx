@@ -11,7 +11,7 @@ const MyApplications = () => {
         const fetchApplications = async () => {
             try {
                 const response = await axios.get(
-                    `https://job-portal-backend-nm6k.onrender.com/api/jobApply/my-applications/${userEmail}`
+                    `${import.meta.env.VITE_BACKEND_URL}/api/jobApply/my-applications/${userEmail}`
                 );
 
                 if (response.data && response.data.applications) {

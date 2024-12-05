@@ -55,7 +55,7 @@ const JobApplicationModal = ({ job, onClose }) => {
         applicationData.append('coverLetter', formData.coverLetter);
     
         try {
-          const response = await axios.post(`https://job-portal-backend-nm6k.onrender.com/api/jobApply/apply/${_id}`, applicationData, {
+          const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/jobApply/apply/${_id}`, applicationData, {
             headers: { 'Content-Type': 'multipart/form-data' },
           });
     

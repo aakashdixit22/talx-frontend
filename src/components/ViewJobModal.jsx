@@ -17,7 +17,7 @@ const ViewJobModal = ({ job, onClose }) => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `https://job-portal-backend-nm6k.onrender.com/api/jobApply/applicants/${job._id}`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/jobApply/applicants/${job._id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

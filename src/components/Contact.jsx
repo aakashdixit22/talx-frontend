@@ -38,7 +38,7 @@ const Contact = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "https://job-portal-backend-nm6k.onrender.com/api/contact/submit",
+        `${import.meta.env.VITE_BACKEND_URL}/api/contact/submit`,
         form,
         {
           headers: {

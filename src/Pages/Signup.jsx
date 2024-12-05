@@ -31,7 +31,7 @@ const SignUp = () => {
     }
 
     try {
-      await axios.post('https://job-portal-backend-nm6k.onrender.com/api/auth/signup', {
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/signup`, {
         email,
         password,
       });

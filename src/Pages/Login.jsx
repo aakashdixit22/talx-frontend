@@ -18,7 +18,7 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post('https://job-portal-backend-nm6k.onrender.com/api/auth/signin', {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/signin`, {
         email,
         password,
       });
