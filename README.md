@@ -44,20 +44,21 @@
 ## 📸 Screenshots  
 
 ### 🌐 Homepage & Explore Jobs  
-<img src="https://github.com/aakashdixit22/talx-frontend/blob/main/public/demo/IMG_1.png?raw=true" alt="Homepage and Explore Jobs" width="600"/>  
+![Homepage and Explore Jobs](https://github.com/aakashdixit22/talx-frontend/blob/main/public/demo/IMG_1.png?raw=true)  
 *Showcasing the modern, responsive homepage and the Explore Jobs page where users can browse job listings.*  
 
 ### ✏️ Post Job & My Jobs with Edit Modal  
-<img src="https://github.com/aakashdixit22/talx-frontend/blob/main/public/demo/IMG_2.png?raw=true" alt="Post Job and My Jobs with Edit Modal" width="600"/>  
+![Post Job and My Jobs with Edit Modal](https://github.com/aakashdixit22/talx-frontend/blob/main/public/demo/IMG_2.png?raw=true)  
 *The Post Job page for job posters and the My Jobs page with the edit modal functionality.*  
 
 ### 📰 BulletinBuzz & 🤖 Chat Assistant  
-<img src="https://github.com/aakashdixit22/talx-frontend/blob/main/public/demo/IMG_3.png?raw=true" alt="BulletinBuzz and Chat Assistant" width="600"/>  
+![BulletinBuzz and Chat Assistant](https://github.com/aakashdixit22/talx-frontend/blob/main/public/demo/IMG_3.png?raw=true)  
 *The BulletinBuzz section for the latest news and the Chat Assistant AI for guidance and support.*  
 
 ### 📄 ResumeAI in Action (GIF)  
-<img src="https://github.com/aakashdixit22/talx-frontend/blob/main/public/demo/ResumeAI_GIF.gif?raw=true" alt="ResumeAI Working" width="600"/>  
+![ResumeAI Working](https://github.com/aakashdixit22/talx-frontend/blob/main/public/demo/ResumeAI_GIF.gif?raw=true)  
 *Demonstrating the AI-powered resume analyzer providing insights and recommendations.*  
+
 
 ---
 
