@@ -40,7 +40,7 @@ export default function Hero() {
           </Link>
           
           <Link 
-            to="/search" 
+            to="/resume" 
             className="group relative inline-flex items-center justify-center"
           >
             
