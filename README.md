@@ -84,8 +84,8 @@
 ### 🧠 AI Backend  
 - **Framework**: Flask (Python).  
 - **AI Models**:  
-  - **Chat Assistant AI**: Llama 3.1 (Meta) via Groq Cloud for chat functionalities.  
-  - **ResumeAI**: Gemini 1.5 Pro Flash for resume parsing and analysis.  
+  - **Chat Assistant AI**: Llama 3.3 (Meta) via Groq Cloud for chat functionalities.  
+  - **ResumeAI**: Gemini 2.5  Flash for resume parsing and analysis.  
 - **Features**:  
   - Fast, streaming API responses for seamless interactions.  
 
