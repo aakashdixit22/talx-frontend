@@ -26,7 +26,7 @@ const TalxChatAssistant = () => {
   }, [messages]);
 
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && messages.length === 0) {
       setMessages([
         {
           role: 'assistant',
@@ -34,7 +34,7 @@ const TalxChatAssistant = () => {
         },
       ]);
     }
-  }, [isOpen]);
+  }, [isOpen, messages.length]);
 
   const simulateTypingEffect = (text, callback) => {
     let i = 0;
