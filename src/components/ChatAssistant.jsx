@@ -38,24 +38,37 @@ const TalxChatAssistant = () => {
 
   const simulateTypingEffect = (text, callback) => {
     let i = 0;
-    const interval = setInterval(() => {
-      setMessages((prev) => {
-        const newMessages = [...prev];
-        const lastMessage = newMessages[newMessages.length - 1];
-        if (lastMessage.role === 'assistant') {
-          newMessages[newMessages.length - 1] = {
-            ...lastMessage,
-            content: text.slice(0, i + 1),
-          };
+    const batchSize = 15; // Increased characters per batch
+    const typingSpeed = 5; // Slight delay for smoothness
+    const totalBatches = Math.ceil(text.length / batchSize);
+    let currentBatch = 0;
+
+    const updateText = () => {
+      currentBatch++;
+      const progress = Math.min((currentBatch / totalBatches) * text.length, text.length);
+      
+      requestAnimationFrame(() => {
+        setMessages(prev => {
+          const newMessages = [...prev];
+          const lastMessage = newMessages[newMessages.length - 1];
+          if (lastMessage?.role === 'assistant') {
+            newMessages[newMessages.length - 1] = {
+              ...lastMessage,
+              content: text.slice(0, progress)
+            };
+          }
+          return newMessages;
+        });
+
+        if (progress < text.length) {
+          setTimeout(updateText, typingSpeed);
+        } else {
+          callback();
         }
-        return newMessages;
       });
-      i++;
-      if (i === text.length) {
-        clearInterval(interval);
-        callback();
-      }
-    }, 1);
+    };
+
+    updateText();
   };
 
   const handleSendMessage = async () => {
@@ -92,15 +105,16 @@ const TalxChatAssistant = () => {
 
       const simulateEnd = () => setIsLoading(false);
 
+      let accumulatedText = '';
       while (true) {
         const { done, value } = await reader?.read();
         if (done) break;
 
         const chunk = decoder.decode(value);
-        updateBuffer += chunk;
-
-        simulateTypingEffect(updateBuffer, simulateEnd);
+        accumulatedText += chunk;
       }
+      // Single typing effect for the complete response
+      simulateTypingEffect(accumulatedText, simulateEnd);
     } catch (error) {
       console.error('Error sending message:', error);
       setMessages((prev) => [
