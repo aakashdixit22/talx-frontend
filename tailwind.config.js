@@ -109,10 +109,10 @@
 //   });
 // }
 
-import svgToDataUri from "mini-svg-data-uri";
-import { default as flattenColorPalette } from "tailwindcss/lib/util/flattenColorPalette";
-import defaultTheme from "tailwindcss/defaultTheme";
-import colors from "tailwindcss/colors";
+const svgToDataUri = require("mini-svg-data-uri");
+const flattenColorPalette = require("tailwindcss/lib/util/flattenColorPalette").default;
+const defaultTheme = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors");
 
 module.exports = {
   content: [
