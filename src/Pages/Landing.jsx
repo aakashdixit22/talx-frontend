@@ -51,7 +51,7 @@ const Landing = () => {
       <Hero />
       <TextParallaxContentExample />
       <InfiniteMovingCardsDemo />
-      <DeveloperSection />
+      {/* <DeveloperSection /> */}
       <Contact />
       <Footer />
     </PageBackgroundHighlight>

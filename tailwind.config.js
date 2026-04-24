@@ -109,10 +109,12 @@
 //   });
 // }
 
-import svgToDataUri from "mini-svg-data-uri";
+
 import { default as flattenColorPalette } from "tailwindcss/lib/util/flattenColorPalette";
 import defaultTheme from "tailwindcss/defaultTheme";
 import colors from "tailwindcss/colors";
+
+const svgToDataUri = (svg) => `data:image/svg+xml,${encodeURIComponent(svg)}`;
 
 /** @type {import('tailwindcss').Config} */
 export const content = [
